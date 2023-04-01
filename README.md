@@ -2,7 +2,7 @@
 
 ### Functionalities:
 
-####Necessary:-
+#### Necessary:-
 
 * User Authentication: The system should have a secure authentication mechanism that allows users to log in and access their accounts. This can be achieved using JWT tokens or other secure authentication methods.
 
@@ -27,9 +27,9 @@
 
 
 
-####Optional:
+#### Optional:
 
-                                                                                                                                                         Loan Management: The system should allow users to apply for loans, view their                     loan status, and make loan payments.
+                                                                                       * Loan Management: The system should allow users to apply for loans, view their            loan status, and make loan payments.
 
 * Interest Calculations: The system should calculate and display the interest earned on deposits or charged on loans.
 
