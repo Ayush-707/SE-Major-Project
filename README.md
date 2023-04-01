@@ -29,7 +29,7 @@
 
 #### Optional:
 
-                                                                                       * Loan Management: The system should allow users to apply for loans, view their            loan status, and make loan payments.
+                                                                                       * Loan Management: The system should allow users to apply for loans, view their          loan status, and make loan payments.
 
 * Interest Calculations: The system should calculate and display the interest earned on deposits or charged on loans.
 
