@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Login,Signup } from '../../Services/APIs';
+import { Login,Signup } from '../../Services/APIs/Auth/AuthAPI';
 import {ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
