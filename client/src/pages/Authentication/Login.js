@@ -4,15 +4,15 @@ import {ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
 
-  const [formData1,setFormData1] = useState ({
+  const [loginData,setLoginData] = useState ({
     userName: '',
     pass: ''
   });
 
-  const [formData2, setFormData2] = useState ({
-    fullname: '',
+  const [signupData, setSignupData] = useState ({
+    fullName: '',
     newUserName: '',
-    Email: '',
+    email: '',
     passWord: '',
     confirmPass: ''
   });
@@ -22,35 +22,66 @@ const Auth = () => {
 
     const {name,value} = event.target;
     if (formName === 'form1') {
-      setFormData1(prevState => ({ ...prevState, [name]: value}));
+      setLoginData(prevState => ({ ...prevState, [name]: value}));
     } else if (formName === 'form2') {
-      setFormData2 (prevState => ({...prevState, [name]: value}));
+      setSignupData (prevState => ({...prevState, [name]: value}));
     }
   }
 
   
   const handleSubmit1 = async (event) => {
     event.preventDefault();
-    console.log(formData1);
+    //console.log(formData1);
     //apicall
 
-    const loginRes = await Login (formData1);
+    try {
+      const loginRes = await Login (loginData);
+      console.log(loginRes.data);
+      
+      if (loginRes.status === 201 ) {
+          toast.error('Username does not Exists', {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnHover: false,
+        });
+      } else if ( loginRes.status === 202 ) {
+
+          toast.error('Incorrect Password', {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnHover: false,
+        });
+      } else if ( loginRes.status === 200 ) {
+
+        toast.success('Login Successful!', {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnHover: false,
+        });
+
+      } else {
+        throw new Error(loginRes);
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
 
 
   };
 
   const handleSubmit2 = async (event) => {
     event.preventDefault();
-    console.log(formData2);
+    console.log(signupData.passWord);
 
-    if ( formData2.passWord.length !== 6 ) {
+    if ( signupData.passWord.length < 5 ) {
       toast.error('Password should be at Least 6 Characters Long', {
         autoClose: 2000,
         hideProgressBar: true,
         pauseOnHover: false,
       });
 
-    } else if ( formData2.passWord !== formData2.confirmPass) {
+    } else if ( signupData.passWord !== signupData.confirmPass) {
 
       toast.error('Passwords do not Match!', {
         autoClose: 2000,
@@ -61,19 +92,33 @@ const Auth = () => {
     } else {
 
       try {
-        const signupRes = await Signup(formData2);
+        const signupRes = await Signup(signupData);
       
-        if (signupRes.status === 200 ) {
+        if (signupRes.status === 201 ) {
           console.log(signupRes.data);
-          toast.success('Signup Successful!', {
+          toast.error("Username already exists.", {
             autoClose: 2000,
             hideProgressBar: true,
             pauseOnHover: false,
           });
 
+        } else if(signupRes.status === 202){
+          console.log(signupRes.data);
+          toast.error("Email already exists.", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            pauseOnHover: false,
+          });
         } else {
-          throw new Error(signupRes);
+
+          console.log(signupRes.data);
+          toast.success("Account Creation Successfull.", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            pauseOnHover: false,
+          });
         }
+
 
       } catch (error) {
         console.error(error);
@@ -91,9 +136,7 @@ const Auth = () => {
   };
 
 
- 
-
-    return (
+  return (
         
   <>
   
@@ -111,11 +154,11 @@ const Auth = () => {
           <form onSubmit = {handleSubmit1}>
             <div className="mb-4">
               <label htmlFor="username" className="block mb-2 font-semibold text-gray-800">Username</label>
-              <input type="text" name="userName" value = {formData1.userName} formName = "form1" onChange={(e) => handleChange(e, "form1")}   placeholder="Enter Your Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+              <input type="text" name="userName" value = {loginData.userName} formName = "form1" onChange={(e) => handleChange(e, "form1")}   placeholder="Enter Your Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
             </div>
             <div className="mb-4">
               <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
-              <input type="password" name="pass" value = {formData1.pass} formName = "form1" onChange={(e) => handleChange(e, "form1")}  placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+              <input type="password" name="pass" value = {loginData.pass} formName = "form1" onChange={(e) => handleChange(e, "form1")}  placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
             </div>
               <button type = "submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                 Login
@@ -137,24 +180,24 @@ const Auth = () => {
       <form onSubmit = {handleSubmit2}>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 font-semibold text-gray-800">Name</label>
-          <input type="text" name="fullname" value = {formData2.fullname} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Your Full Name" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+          <input type="text" name="fullName" value = {signupData.fullName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Your Full Name" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
         </div>
         <div className="mb-4">
           <label htmlFor="username" className="block mb-2 font-semibold text-gray-800">Username</label>
-          <input type="text" name = "newUserName" value = {formData2.newUserName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+          <input type="text" name = "newUserName" value = {signupData.newUserName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
         </div>
         <div className="mb-4">
         
           <label htmlFor="email" className="block mb-2 font-semibold text-gray-800">Email</label>
-          <input type="email" name = "Email" value = {formData2.Email} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
+          <input type="email" name = "email" value = {signupData.email} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
         </div>
         <div className="mb-4">
           <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
-          <input type="password" name = "passWord" value = {formData2.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
+          <input type="password" name = "passWord" value = {signupData.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
         </div>
         <div className="mb-4">
           <label htmlFor="confirmPassword" className="block mb-2 font-semibold text-gray-800">Confirm Password</label>
-          <input type="password" name = "confirmPass" value = {formData2.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+          <input type="password" name = "confirmPass" value = {signupData.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
           
         </div>
 

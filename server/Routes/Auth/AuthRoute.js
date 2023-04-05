@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
-const controller = require( "../../Controllers/Auth/AuthController" ); 
+const signup = require( "../../Controllers/Auth/SignupController" ); 
+const login = require( "../../Controllers/Auth/LoginController" ); 
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -9,9 +10,9 @@ router.use(express.static(path.resolve(__dirname, 'public')));
 
 //Routes
 
-router.post("/User/Signup", controller.userSignUp);
+router.post("/User/Signup", signup.userSignUp);
 
-router.post("/User/Login", controller.userLogin);
+router.post("/User/Login", login.userLogin);
 
 
 

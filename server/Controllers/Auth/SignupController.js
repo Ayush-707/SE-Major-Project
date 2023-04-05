@@ -1,12 +1,12 @@
 const User = require("../../Database/Models/Auth/UserDetails");
 
 exports.userSignUp = async (req, res) => {
-  const { fullname, newUserName, Email, passWord } = req.body;
+  const { fullName, newUserName, email, passWord } = req.body;
 
   const userData = {
-    Name: fullname,
+    Name: fullName,
     UserName: newUserName,
-    Email: Email,
+    Email: email,
     Password: passWord,
   };
 
@@ -15,12 +15,12 @@ exports.userSignUp = async (req, res) => {
   try {
     const existingUser = await User.findOne({ UserName: newUserName });
     if (existingUser) {
-      return res.status(460).json({ message: "Username already exists." });
+      return res.status(201).json({ message: "Username already exists." });
     }
 
-    const existingEmail = await User.findOne({ Email: Email });
+    const existingEmail = await User.findOne({ Email: email });
     if (existingEmail) {
-      return res.status(461).json({ message: "Email already exists." });
+      return res.status(202).json({ message: "Email already exists." });
     }
 
     await newUser.save();
@@ -31,4 +31,4 @@ exports.userSignUp = async (req, res) => {
   }
 };
 
-exports.userLogin = async (req, res) => {};
+
