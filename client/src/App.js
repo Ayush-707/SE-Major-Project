@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-//import Register from './pages/Authentication/Register';
 import Login from './pages/Authentication/Login';
+import UserHomePage from './pages/Authentication/UserHome';
 import { Routes, Route } from "react-router-dom"
-import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
    <Routes>
     <Route path = '/' element = {<Login/>} />
+    <Route path = '/User/Home' element = {<UserHomePage/>} />
    </Routes>
   );
 }

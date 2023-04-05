@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Login,Signup } from '../../Services/APIs/Auth/AuthAPI';
+import { useNavigate } from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
@@ -16,6 +17,8 @@ const Auth = () => {
     passWord: '',
     confirmPass: ''
   });
+
+  const navigate = useNavigate();
 
   
   function handleChange (event, formName) {
@@ -58,6 +61,8 @@ const Auth = () => {
           hideProgressBar: true,
           pauseOnHover: false,
         });
+
+        navigate("/User/Home");
 
       } else {
         throw new Error(loginRes);
