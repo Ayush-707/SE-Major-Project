@@ -23,6 +23,6 @@ exports.userLogin = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        return res.status(200).json({message: "An error occured while trying to login"});
+        return res.status(400).json({message: "An error occured while trying to login"});
     }
 };
