@@ -20,6 +20,9 @@ const Auth = () => {
 
   const navigate = useNavigate();
 
+  const styles = {
+    backgroundImage: 'url(/gvTIFs.webp)'
+  }
   
   function handleChange (event, formName) {
 
@@ -146,7 +149,8 @@ const Auth = () => {
   <>
   
 <ToastContainer />
-<div style={{ backgroundImage: 'url(/gvTIFs.webp)' }}>
+
+<div style = {styles} >
     <div class="flex justify-center">
       <div class="w-1/3 px-4 mt-32 scale-95 ">
         <div class="bg-gray-200 rounded-lg shadow-lg p-6 mb-4">
