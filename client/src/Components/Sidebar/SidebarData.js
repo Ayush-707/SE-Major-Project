@@ -3,6 +3,8 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 
+
+
 export const SidebarData = [
     {
         title: "Home",
@@ -40,9 +42,15 @@ export const SidebarData = [
     },
 
     {
-        title: "Page-5",
+        title: "Search",
         path: '/User/Page-5',
-        icon: <IoIcons.IoMdHelpCircle/>,
+        icon: <FaIcons.FaSearch/>,
+        cName: 'nav-text'
+    },
+    {
+        title: "Contact US",
+        path: '/User/Page-6',
+        icon: <FaIcons.FaAddressBook/>,
         cName: 'nav-text'
     },
 
