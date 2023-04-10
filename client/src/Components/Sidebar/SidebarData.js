@@ -14,23 +14,23 @@ export const SidebarData = [
     },
 
     {
-        title: "Page-1",
+        title: "Deposit Money",
         path: '/User/Page-1',
-        icon: <IoIcons.IoIosPaper/>,
+        icon: <FaIcons.FaArrowUp/>,
         cName: 'nav-text'
     },
 
     {
-        title: "Page-2",
+        title: "Withdraw Money",
         path: '/User/Page-2',
-        icon: <FaIcons.FaCartPlus/>,
+        icon: <FaIcons.FaArrowDown/>,
         cName: 'nav-text'
     },
 
     {
-        title: "Page-3",
+        title: "Transact Money",
         path: '/User/Page-3',
-        icon: <IoIcons.IoMdPeople/>,
+        icon: <FaIcons.FaArrowCircleRight/>,
         cName: 'nav-text'
     },
 

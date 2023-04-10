@@ -5,10 +5,21 @@ import {Link} from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
+import { useLocation } from 'react-router-dom';
+
 function Navbar() {
 
+  const location = useLocation();
   const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => {
+    if(location.pathname === '/'){
+      alert("Dear User, Kindly Login first ");
+    }
+    else{
+      setSidebar(!sidebar);
+    }
+    
+  }
 
   return (
     
@@ -18,6 +29,7 @@ function Navbar() {
                 <Link to="#" className = 'menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar}/>
                 </Link>
+                <div  style={{marginLeft:"50px",color:"white",fontSize: '50px'}}>MY ROPAR BANK </div>
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
               <ul className='nav-menu-items' onClick={showSidebar}>
