@@ -1,0 +1,7 @@
+git log --format='%aN' -- . ':!node_modules' ':!**/node_modules'
+ ':!**/package-lock.json' | sort -u | while 
+    read author; 
+        do echo -e "\n$author"; git log --author="$author" --pretty=tformat: --numstat -- . ':!**/node_modules' ':!**/package-lock.json' | awk 
+            '{ add += $1; subs += $2; loc += $1 - $2 } 
+                END { printf "Added lines: %s\nRemoved lines: %s\nTotal lines: %s\nCommits: %s\n", add, subs, loc, NR/2 }' -; 
+                    done
