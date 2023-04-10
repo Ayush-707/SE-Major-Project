@@ -12,4 +12,4 @@ set grid y
 set ylabel "Lines"
 set xtics rotate
 set bmargin 6
-plot 'lines_of_code_by_author.dat' using 1:2 title "Ayush-707" w lines, 'lines_of_code_by_author.dat' using 1:3 title "ShailjaNigam" w lines, 'lines_of_code_by_author.dat' using 1:4 title "Akhil Arya" w lines
+plot 'lines_of_code_by_author.dat' using 1:2 title "Ayush-707" w lines, 'lines_of_code_by_author.dat' using 1:3 title "ShailjaNigam" w lines, 'lines_of_code_by_author.dat' using 1:4 title "Akhil Arya" w lines, 'lines_of_code_by_author.dat' using 1:5 title "Anandu A P" w lines

@@ -1,2 +1,4 @@
 **/.DS_Store
 /gitstats
+/client/node_modules
+/server/node_modules
