@@ -1,3 +1,4 @@
+/*                                                     REMOVE ANYTHING THAT IS NOT USEFUL, OR IS EXTRA                                                                  */
 import React, { useState } from 'react';
 
 function TransactionPage() {
