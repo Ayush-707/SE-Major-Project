@@ -29,8 +29,7 @@ function Navbar() {
                 <Link to="#" className = 'menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar}/>
                 </Link>
-                <div  style={{marginLeft:"50px",color:"white",fontSize: '50px'}}>MY ROPAR BANK </div>
-            </div>
+                <div class="mx-auto text-white font-semibold text-3xl tracking-wide text-center">Bank Management App</div>            </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
               <ul className='nav-menu-items' onClick={showSidebar}>
                 <li className='navbar-toggle'>
