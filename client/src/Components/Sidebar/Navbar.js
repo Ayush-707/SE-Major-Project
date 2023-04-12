@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 4d1b453 (coomit issues)
 import React, {useState} from 'react'
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -62,9 +58,4 @@ function Navbar() {
     </>
   )
 }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 4d1b453 (coomit issues)
 export default Navbar
