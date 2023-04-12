@@ -7,9 +7,9 @@ import Page3 from './pages/Misc/Page-3'
 import Page4 from './pages/Misc/Page-4'
 import Page5 from './pages/Misc/Page-5'
 import Page6 from './pages/Misc/Page-6'
-import Adminloan from './pages/Loan&Transaction/Adminloan'
-import Loan from './pages/Loan&Transaction/Loan'
-import Transaction from './pages/Loan&Transaction/Transaction'
+// import Adminloan from './pages/Loan&Transaction/Adminloan'
+// import Loan from './pages/Loan&Transaction/Loan'
+// import Transaction from './pages/Loan&Transaction/Transaction'
 import { Route,Routes } from "react-router-dom"
 import './App.css'
 
@@ -30,9 +30,7 @@ function App() {
             <Route path = '/User/Page-4' element = {<Page4/>} />
             <Route path = '/User/Page-5' element = {<Page5/>} />
             <Route path = '/User/Page-6' element = {<Page6/>} />
-            <Route path = '/User/loan' element = {<Loan/>} />
-            <Route path = '/Admin/Adminloan' element = {<Adminloan/>} />
-            <Route path = '/User/transaction' element = {<Transaction/>} />
+            
         
       </Routes>
 
@@ -43,3 +41,6 @@ function App() {
 }
 
 export default App;
+{/* <Route path = '/User/loan' element = {<Loan/>} />
+<Route path = '/Admin/Adminloan' element = {<Adminloan/>} />
+<Route path = '/User/transaction' element = {<Transaction/>} /> */}

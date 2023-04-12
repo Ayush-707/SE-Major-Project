@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Deposit = () => {
   const [id, setId] = useState("");
   
-  const [date, setDate] = useState("");
+  const currentDate = new Date().toLocaleDateString();
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
@@ -31,16 +31,9 @@ const Deposit = () => {
       
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
-            Date
+          Date :{currentDate}
           </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="date"
-            type="date"
-            placeholder="Date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="amount">
@@ -72,14 +65,3 @@ export default Deposit;
 
 
 
-/*import React from 'react'
-
-function Page1() {
-  return (
-    <div className='page'>
-      Page1
-    </div>
-  )
-}
-
-export default Page1*/
