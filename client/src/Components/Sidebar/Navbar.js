@@ -6,8 +6,7 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import { useLocation } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function Navbar() {
 
@@ -15,7 +14,7 @@ function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => {
     if(location.pathname === '/'){
-      toast("Dear User, Kindly Login first ");
+      alert("Dear User, Kindly Login first ");
     }
     else{
       setSidebar(!sidebar);

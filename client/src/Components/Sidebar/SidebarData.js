@@ -15,41 +15,35 @@ export const SidebarData = [
 
     {
         title: "Deposit Money",
-        path: '/User/Page-1',
+        path: '/User/Deposit',
         icon: <FaIcons.FaArrowUp/>,
         cName: 'nav-text'
     },
 
     {
         title: "Withdraw Money",
-        path: '/User/Page-2',
+        path: '/User/Withdraw',
         icon: <FaIcons.FaArrowDown/>,
         cName: 'nav-text'
     },
 
     {
         title: "Transact Money",
-        path: '/User/Page-3',
+        path: '/User/Transaction',
         icon: <FaIcons.FaArrowCircleRight/>,
         cName: 'nav-text'
     },
 
     {
-        title: "Page-4",
-        path: '/User/Page-4',
+        title: "Open Account",
+        path: '/User/New-Account',
         icon: <FaIcons.FaEnvelopeOpenText/>,
         cName: 'nav-text'
     },
 
     {
-        title: "Search",
-        path: '/User/Page-5',
-        icon: <FaIcons.FaSearch/>,
-        cName: 'nav-text'
-    },
-    {
         title: "Contact US",
-        path: '/User/Page-6',
+        path: '/User/Contact',
         icon: <FaIcons.FaAddressBook/>,
         cName: 'nav-text'
     },
