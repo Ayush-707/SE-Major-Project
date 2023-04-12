@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Navbar from './Components/Sidebar/Navbar';
 import Login from './pages/Authentication/Login';
 import UserHomePage from './pages/Authentication/UserHome';
@@ -37,3 +38,50 @@ function App() {
 }
 
 export default App;
+=======
+import Navbar from './Components/Sidebar/Navbar';
+import Login from './pages/Authentication/Login';
+import UserHomePage from './pages/Authentication/UserHome';
+import Page1 from './pages/Misc/Page-1'
+import Page2 from './pages/Misc/Page-2'
+import Page3 from './pages/Misc/Page-3'
+import Page4 from './pages/Misc/Page-4'
+import Page5 from './pages/Misc/Page-5'
+import Page6 from './pages/Misc/Page-6'
+// import Adminloan from './pages/Loan&Transaction/Adminloan'
+// import Loan from './pages/Loan&Transaction/Loan'
+// import Transaction from './pages/Loan&Transaction/Transaction'
+import { Route,Routes } from "react-router-dom"
+import './App.css'
+
+function App() {
+
+  
+  return (
+  <>
+  
+  <Navbar/>
+      <Routes>
+          
+            <Route exact path = '/' element = {<Login/>} />
+            <Route path = '/User/Home' element = {<UserHomePage/>} />
+            <Route path = '/User/Page-1' element = {<Page1/>} />
+            <Route path = '/User/Page-2' element = {<Page2/>} />
+            <Route path = '/User/Page-3' element = {<Page3/>} />
+            <Route path = '/User/Page-4' element = {<Page4/>} />
+            <Route path = '/User/Page-5' element = {<Page5/>} />
+            <Route path = '/User/Page-6' element = {<Page6/>} />
+            <Route path = '/User/loan' element = {<Loan/>} />
+            <Route path = '/Admin/Adminloan' element = {<Adminloan/>} />
+            <Route path = '/User/transaction' element = {<Transaction/>} />
+        
+      </Routes>
+
+    
+ 
+  </>
+  );
+}
+
+export default App;
+>>>>>>> 4d1b453 (coomit issues)
