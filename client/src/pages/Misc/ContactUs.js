@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {CustCare} from '../../Services/APIs/UserAPI';
+import {ToastContainer, toast } from 'react-toastify';
 
 const ContactForm = () => {
 
@@ -10,39 +12,81 @@ const ContactForm = () => {
     message: '',
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    const trimmedValue = value.trim(); // Trims spaces at start and end
+    const trimmedValue = value.trim(); 
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: trimmedValue,
     }));
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+    setIsLoading(true);
+    //console.log(formData);
     // add logic for submitting form data
+    const response = await CustCare(formData);
+    console.log(response.data);
+    if (response.status === 201 ) {
+      
+      toast.error("Error While Checking Email Existence!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
+
+    } else if(response.status === 202){
+     
+      toast.error("Invalid Email Address!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        
+      });
+    } else {
+
+      
+      toast.success("Email Sent Successfully!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
+      
+    }
+
+    setIsLoading(false);
+
   };
 
   return (
   <>  
-
-<div className="flex flex-row w-full">
-  <div className="w-1/2 pr-6">
-    <div className="w-full">
-      <img src={process.env.PUBLIC_URL + '/support.avif'} alt="" className="w-full" />
-    </div>
-  </div>
-  <div className="w-1/2">
-  <form onSubmit={handleSubmit} className="flex flex-col items-center h-screen" style={{ 
-  backgroundImage: `url(${process.env.PUBLIC_URL}/form1.jpg)`,
-  backgroundSize: 'cover',
-  
-}}>
+    <ToastContainer/>
+      <div className="flex flex-row w-full">
+        <div className="w-1/2 pr-6">
+          <div className="w-full">
+            <img src={process.env.PUBLIC_URL + '/support.avif'} alt="" className="w-full" />
+          </div>
+        </div>
+        <div className="w-1/2">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center h-screen" style={{ 
+        backgroundImage: `url(${process.env.PUBLIC_URL}/form1.jpg)`,
+        backgroundSize: 'cover',
+        
+      }}>
       <h1 className="text-2xl font-bold text-gray-800 text-center mb-2 mt-4">Contact Us</h1>
       <div className="w-1/2">
-        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+        <label htmlFor="name" className="block text-gray-700 font-bold mb-2 mx-1">
           Name
         </label>
         <input
@@ -50,13 +94,13 @@ const ContactForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline italic::placeholder"
+          className="border-2 border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter your name"
           required
         />
       </div>
       <div className="w-1/2 mt-4">
-        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+        <label htmlFor="email" className="block text-gray-700 font-bold mb-2 mx-1">
           Email
         </label>
         <input
@@ -64,13 +108,13 @@ const ContactForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="italic::placeholder w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-2 border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter your email"
           required
         />
       </div>
       <div className="w-1/2 mt-4">
-        <label htmlFor="subject" className="block text-gray-700 font-bold mb-2">
+        <label htmlFor="subject" className="block text-gray-700 font-bold mb-2 mx-1">
           Subject
         </label>
         <input
@@ -78,32 +122,33 @@ const ContactForm = () => {
           name="subject"
           value={formData.subject}
           onChange={handleChange}
-          className="italic::placeholder w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-2 border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter subject"
           required
         />
       </div>
       <div className="w-1/2 mt-4">
-        <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
+        <label htmlFor="message" className="block text-gray-700 font-bold mb-2 mx-1">
           Message
         </label>
         <textarea
           name="message"
           value={formData.message}
           onChange={handleChange}
-          className="italic::placeholder w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-2 border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter your message"
-          rows="5"
+          rows="4"
           required
         />
       </div>
       <div className="mt-4">
-        <button
+      <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Submit
-        </button>
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                    ${isLoading ? "cursor-wait disabled opacity-50" : ""}`}disabled={isLoading}>
+        {isLoading ? "Loading..." : "Submit"}
+      </button>
+
       </div>
     </form>
     

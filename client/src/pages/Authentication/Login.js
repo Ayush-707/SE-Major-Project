@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { Login,Signup } from '../../Services/APIs/Auth/AuthAPI';
+import { Login,Signup } from '../../Services/APIs/AuthAPI';
 import { useNavigate } from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
+
+ 
 
   const [loginData,setLoginData] = useState ({
     userName: '',
@@ -21,7 +23,10 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const styles = {
-    backgroundImage: 'url(/gvTIFs.webp)'
+    backgroundImage: 'url(/gvTIFs.webp)',
+    
+    // height: "89.5vh",
+    overflow: "hidden"
   }
   
   function handleChange (event, formName) {
@@ -63,6 +68,14 @@ const Auth = () => {
           autoClose: 2000,
           hideProgressBar: true,
           pauseOnHover: false,
+          style: {
+            background: "#4BB543",
+            color: "#fff",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            border: "none",
+            boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+          },
         });
 
         navigate("/User/Home");
@@ -124,6 +137,14 @@ const Auth = () => {
             autoClose: 2000,
             hideProgressBar: true,
             pauseOnHover: false,
+            style: {
+              background: "#4BB543",
+              color: "#fff",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              border: "none",
+              boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+            },
           });
         }
 
@@ -152,7 +173,7 @@ const Auth = () => {
 
 <div style = {styles} >
     <div class="flex justify-center">
-      <div class="w-1/3 px-4 mt-32 scale-95 ">
+      <div class="w-1/3 scale-95 mt-20 ml-28">
         <div class="bg-gray-200 rounded-lg shadow-lg p-6 mb-4">
 
           <div className="mb-6">
@@ -169,18 +190,18 @@ const Auth = () => {
               <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
               <input type="password" name="pass" value = {loginData.pass} formName = "form1" onChange={(e) => handleChange(e, "form1")}  placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
             </div>
-              <button type = "submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+              <button type = "submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
                 Login
               </button>
           </form>
 
     </div>
   </div>
-  <div class="w-1/3 px-4 transform scale-90 transform-origin-center">
+  <div class="px-4 transform scale-90 transform-origin-center w-1/2">
     <div class="bg-gray-200 rounded-lg shadow-lg p-6 mb-4">
 
     <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Create an Account</h1>
+        <h1 className="text-2xl font-bold text-gray-800">Create New Profile</h1>
         <p className="text-gray-500">Sign up to get started</p>
       </div>
 
@@ -200,17 +221,19 @@ const Auth = () => {
           <label htmlFor="email" className="block mb-2 font-semibold text-gray-800">Email</label>
           <input type="email" name = "email" value = {signupData.email} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
         </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
-          <input type="password" name = "passWord" value = {signupData.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="confirmPassword" className="block mb-2 font-semibold text-gray-800">Confirm Password</label>
-          <input type="password" name = "confirmPass" value = {signupData.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
-          
-        </div>
+        <div className="flex mb-4">
+  <div className="w-1/2 inline-block mr-2">
+    <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
+    <input type="password" name="passWord" value={signupData.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+  </div>
+  <div className="w-1/2 inline-block ml-2">
+    <label htmlFor="confirmPassword" className="block mb-2 font-semibold text-gray-800">Confirm Password</label>
+    <input type="password" name="confirmPass" value={signupData.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+  </div>
+</div>
 
-        <button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+
+        <button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
             Sign Up
             </button>
         </form>

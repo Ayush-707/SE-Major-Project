@@ -1,4 +1,5 @@
-const User = require("../../Database/Models/Auth/UserDetails");
+const User = require("../../Database/Models/UserDetails");
+const emailExistence = require('email-existence');
 
 exports.userSignUp = async (req, res) => {
   const { fullName, newUserName, email, passWord } = req.body;
@@ -24,6 +25,7 @@ exports.userSignUp = async (req, res) => {
     }
 
     await newUser.save();
+    
     return res.status(200).json({ message: "User has been saved to the database." });
   } catch (error) {
     console.log(error);
