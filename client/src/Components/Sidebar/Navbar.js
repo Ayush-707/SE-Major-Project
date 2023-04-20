@@ -28,7 +28,8 @@ function Navbar() {
                     <FaIcons.FaBars onClick={isClickable ? showSidebar : null} />
                 </Link>
                 <div className="mx-auto text-white font-semibold text-3xl tracking-wide text-center">
-                    Bank Management App
+                  <i class="fa-solid fa-building-columns"></i>
+                    &nbsp;Bank Management App
                 </div>
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

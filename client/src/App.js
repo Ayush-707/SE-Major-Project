@@ -6,6 +6,8 @@ import Deposit from './pages/Misc/Deposit'
 import NewAccount from './pages/Misc/NewAccount'
 import Transaction from './pages/Misc/Transaction'
 import Withdraw from './pages/Misc/Withdraw'
+import Landing from './pages/Authentication/LandingPage'
+
 //import Page6 from './pages/Misc/'
 // import Adminloan from './pages/Loan&Transaction/Adminloan'
 // import Loan from './pages/Loan&Transaction/Loan'
@@ -22,7 +24,8 @@ function App() {
   <Navbar/>
       <Routes>
           
-            <Route exact path = '/' element = {<Login/>} />
+            <Route exact path = '/' element = {<Landing/>} />
+            <Route exact path = '/User/Auth' element = {<Login/>} />
             <Route path = '/User/Home' element = {<UserHomePage/>} />
             <Route path = '/User/Contact' element = {<Contact/>} />
             <Route path = '/User/Deposit' element = {<Deposit/>} />
