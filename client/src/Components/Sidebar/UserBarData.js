@@ -38,7 +38,7 @@ export const SidebarData = [
 
     {
         title: "Signup/Login",
-        path: '/',
+        path: '/User/Auth',
         icon: <FaIcons.FaLockOpen/>,
         cName: 'nav-text'
     },

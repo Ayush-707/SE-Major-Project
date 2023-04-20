@@ -2,10 +2,10 @@ import Navbar from './Components/Sidebar/Navbar';
 import Login from './pages/Authentication/UserLogin';
 import UserHomePage from './pages/Authentication/UserHome';
 import Contact from './pages/User/ContactUs'
-import Deposit from './pages/User/Deposit'
+import Deposit from './pages/Admin/Deposit'
 import NewAccount from './pages/User/NewAccount'
 import Transaction from './pages/User/Transaction'
-import Withdraw from './pages/User/Withdraw'
+import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
 
 

@@ -12,7 +12,13 @@ function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
-  const isClickable = location.pathname !== '/';
+  let isClickable;
+
+  if (location.pathname === '/' || location.pathname === '/User/Auth' || location.pathname === '/Admin/Auth') {
+    isClickable = false;
+  }
+
+  else isClickable = true;
 
   let navData = SidebarData;
   if (location.pathname.startsWith('/Admin')) {
