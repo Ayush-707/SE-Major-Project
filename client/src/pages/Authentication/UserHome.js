@@ -6,7 +6,8 @@ import React from 'react'
 const UserHomePage = () => {
     
   const styles = {
-    backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`
+    backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`,
+    overflow: `hidden`
   }
 
   return (
