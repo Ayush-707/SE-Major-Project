@@ -1,5 +1,5 @@
 // controllers/withdrawController.js
-const Deposit = require("../Models/withdrawModel");
+const Deposit = require("../../Database/Models/withdrawModel");
 
 const withdrawMoney = async (req, res) => {
   try {
