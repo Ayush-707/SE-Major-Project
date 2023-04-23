@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const router = require("./Routes/Auth/AuthRoute");
 const router2 = require("./Routes/UserFunctions/UserRoute");
 const depositRoutes = require("./Routes/Adminr/depositRoutes");
-const withdrawRoutes=require("./Routes/Adminr/withdrawRoute");
 const PORT = 4002;
 
 
