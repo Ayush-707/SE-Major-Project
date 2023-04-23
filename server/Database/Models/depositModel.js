@@ -14,7 +14,12 @@ const depositSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-});
+},
+{
+  collection: "deposit",
+}
+
+);
 
 const Deposit = mongoose.model("Deposit", depositSchema);
 

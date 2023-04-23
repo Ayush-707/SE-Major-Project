@@ -1,5 +1,5 @@
 // controllers/depositController.js
-const Deposit = require("../Models/depositModel");
+const Deposit = require("../../Database/Models/depositModel");
 
 const createDeposit = async (req, res) => {
   try {
