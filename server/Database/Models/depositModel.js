@@ -6,7 +6,7 @@ const depositSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  date: {
+ date: {
     type: Date,
     default: Date.now
   },
@@ -16,7 +16,7 @@ const depositSchema = new mongoose.Schema({
   }
 },
 {
-  collection: "deposit",
+  collection: "Deposit",
 }
 
 );
