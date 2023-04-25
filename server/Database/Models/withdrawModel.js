@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const withdrawSchema = new mongoose.Schema({
@@ -13,7 +14,12 @@ const withdrawSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-});
+},
+{
+  collection: "deposit",
+}
+
+);
 
 const Withdraw = mongoose.model("Withdraw", withdrawSchema);
 

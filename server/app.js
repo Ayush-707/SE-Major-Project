@@ -8,6 +8,7 @@ const router = require("./Routes/Auth/AuthRoute");
 const router2 = require("./Routes/UserFunctions/UserRoute");
 const router3 = require("./Routes/UserFunctions/RequestAccountRoute");
 const withdrawRoutes=require("./Routes/Adminr/withdrawRoute");
+const depositRoutes = require("./Routes/Adminr/depositRoute");
 const PORT = 4002;
 
 
@@ -22,6 +23,8 @@ app.use(router2);
 app.use('/api/new-account', router3);
 app.use(router3);
 app.use("/api/withdraw",withdrawRoutes);
+app.use(bodyParser.json());
+app.use("/api/deposit",depositRoutes);
 app.use(bodyParser.json());
 
 app.listen(PORT,()=>{
