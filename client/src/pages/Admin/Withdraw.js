@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import {WithdrawCall} from '../../Services/APIs/AdminAPI';
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,7 @@ const Withdraw = () => {
   };
 
   const handleCheckBalance = async (e) => {
-    setBalance(4);// This line to be deleted
+    setBalance(400);// This line to be deleted
     e.preventDefault();
     try {
       const response = await axios.get(`/api/balance/${id}`);
@@ -28,12 +29,50 @@ const Withdraw = () => {
     }
   };
 
-  const doWithdraw = (e) => {
+  const doWithdraw = async (e) =>{
     if(balance==null){
       alert("check balance first")
     }
     else if(String({amount}["amount"])==''){
       alert("Enter the amount to be withdrawn")
+    }
+    else if(parseInt({amount}["amount"])>parseInt(balance)){
+      alert("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance)
+    }
+    else if(parseInt({amount}["amount"])<0){
+      alert("Enter a +ve amount to be withdrawn")
+    }
+    else{
+      
+    const response = await WithdrawCall({"id":id,"amount":amount});
+    console.log(response.data);
+    if (response.status === 201 ) {
+      
+      toast.error("Error While Withdrawing the amount", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
+
+    } else {
+      setBalance(parseInt(balance)-parseInt({amount}["amount"]));
+      
+      toast.success("Amount withdrawn Successfully", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
+      
+    }
+
     }
     console.log(parseInt({amount}["amount"]));
     
@@ -41,6 +80,8 @@ const Withdraw = () => {
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <h1 className="text-2xl font-bold mb-4">Withdraw Money</h1>
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xxxl">
@@ -105,6 +146,7 @@ const Withdraw = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

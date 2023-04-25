@@ -6,8 +6,9 @@ require("./Database/Connection");
 const bodyParser = require('body-parser');
 const router = require("./Routes/Auth/AuthRoute");
 const router2 = require("./Routes/UserFunctions/UserRoute");
-const depositRoutes = require("./Routes/Adminr/depositRoute");
-const PORT = 3000;
+
+const withdrawRoutes=require("./Routes/Adminr/withdrawRoute");
+const PORT = 4002;
 
 
 
@@ -18,9 +19,8 @@ app.use('/api', router);
 app.use(router);
 app.use('/api', router2);
 app.use(router2);
+app.use("/api/withdraw",withdrawRoutes);
 app.use(bodyParser.json());
-app.use("/api/deposits", depositRoutes);
-
 
 app.listen(PORT,()=>{
     console.log(`Server start at Port No :${PORT}`)
