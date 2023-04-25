@@ -1,21 +1,12 @@
 import React, { useState } from "react";
-import {RequestNewAccount} from '../../Services/APIs/NewAccountAPI';
+import {RequestNewAccount} from '../../Services/APIs/UserAPI';
 import {ToastContainer, toast } from 'react-toastify';
 
 function Page4() {
 
-  // const [name, setName] = useState("");
-  // const [phone, setPhoneNo] = useState("");
-  // const [dob, setDOB] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [accountType, setAccountType] = useState("");
-  // const [street, setStreetAddr] = useState("");
-  // const [city, setCity] = useState("");
-  // const [pin, setPin] = useState("")
-  // const [state, setState] = useState("");
 
   const [formData, setFormData] = useState({
-    username: '',
+    
     name: '',
     phone: '',
     dob: '',
@@ -116,24 +107,10 @@ function Page4() {
     
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={styles}>
-      <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="username">
-            Username
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder="Your Username"
-            required
-          />
-        </div>
+      
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="name">
-            Full Name
+            Ful Name
             <span className="text-red-500">*</span>
           </label>
           <input
@@ -288,21 +265,6 @@ function Page4() {
             <option value="Fixed Deposit">Fixed Deposit</option>
           </select>
         </div>
-
-        {/* <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="pdf">
-            Upload PDF of valid identity card
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="pdf"
-            type="file"
-            accept=".pdf"
-            onChange={(e) => handleFileUpload(e.target.files[0])}
-            required
-          />
-        </div> */}
 
         <div className="flex items-center justify-center">
           <button
