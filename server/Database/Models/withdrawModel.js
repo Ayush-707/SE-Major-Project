@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const depositSchema = new mongoose.Schema({
+const withdrawSchema = new mongoose.Schema({
   id: {
     type: String,
     required: true
@@ -21,6 +21,6 @@ const depositSchema = new mongoose.Schema({
 
 );
 
-const Deposit = mongoose.model("Deposit", depositSchema);
+const Withdraw = mongoose.model("Withdraw", withdrawSchema);
 
-module.exports = Deposit;
+module.exports = Withdraw;

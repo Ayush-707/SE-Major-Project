@@ -9,7 +9,6 @@ const Withdraw = () => {
   const [id, setId] = useState("");
   const currentDate = new Date().toLocaleDateString();
   const [balance, setBalance] = useState(null);
-
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
