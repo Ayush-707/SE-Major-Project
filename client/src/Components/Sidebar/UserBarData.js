@@ -23,11 +23,26 @@ export const SidebarData = [
     },
 
     {
+        title: "Transaction History",
+        path: '/User/transactionHistory',
+        icon: <FaIcons.FaArrowCircleRight/>,
+        cName: 'nav-text'
+    },
+
+    {
         title: "Open Account",
         path: '/User/New-Account',
         icon: <i class="fa-solid fa-money-bill-transfer"></i>,
         cName: 'nav-text'
     },
+
+    {
+        title: "Investment",
+        path: '/User/Investment',
+        icon: <FaIcons.FaArrowCircleRight/>,
+        cName: 'nav-text'
+    },
+
 
     {
         title: "Contact US",

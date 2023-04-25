@@ -13,9 +13,11 @@ const depositSchema = new mongoose.Schema({
     type: Number,
     required: true
   }
-}, {
+}, 
+{
   collection: "deposit" // Fix: Added closing parenthesis here
-});
+}
+);
 
 const Deposit = mongoose.model("Deposit", depositSchema);
 

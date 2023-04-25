@@ -5,6 +5,7 @@ import Contact from './pages/User/ContactUs'
 import Deposit from './pages/Admin/Deposit'
 import NewAccount from './pages/User/NewAccount'
 import Transaction from './pages/User/Transaction'
+import Investment from './pages/User/Investment'
 import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
 
@@ -37,6 +38,7 @@ function App() {
             <Route path = '/User/Contact' element = {<Contact/>} />
             <Route path = '/User/New-Account' element = {<NewAccount/>} />
             <Route path = '/User/Transaction' element = {<Transaction/>} />
+            <Route path = '/User/Investment' element = {<Investment/>} />
             
 
 
