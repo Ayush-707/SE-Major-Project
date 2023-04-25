@@ -1,16 +1,92 @@
 import React, { useState } from "react";
+import {RequestNewAccount} from '../../Services/APIs/NewAccountAPI';
+import {ToastContainer, toast } from 'react-toastify';
 
 function Page4() {
 
-  const [name, setName] = useState("");
-  const [phone, setPhoneNo] = useState("");
-  const [dob, setDOB] = useState("");
-  const [email, setEmail] = useState("");
-  const [accountType, setAccountType] = useState("");
-  const [street, setStreetAddr] = useState("");
-  const [city, setCity] = useState("");
-  const [pin, setPin] = useState("")
-  const [state, setState] = useState("");
+  // const [name, setName] = useState("");
+  // const [phone, setPhoneNo] = useState("");
+  // const [dob, setDOB] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [accountType, setAccountType] = useState("");
+  // const [street, setStreetAddr] = useState("");
+  // const [city, setCity] = useState("");
+  // const [pin, setPin] = useState("")
+  // const [state, setState] = useState("");
+
+  const [formData, setFormData] = useState({
+    username: '',
+    name: '',
+    phone: '',
+    dob: '',
+    email: '',
+    accountType:'',
+    street:'',
+    city: '',
+    pin:'',
+    state:'',
+  });
+
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    const trimmedValue = value.trim(); 
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: trimmedValue,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+
+    console.log(formData);
+    console.log(1453);
+    // add logic for submitting form data
+
+    const response = await RequestNewAccount(formData);
+    console.log(response.data);
+    if (response.status === 400 ) {
+      
+      toast.error("Error While doing things!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
+
+    } else if(response.status === 200){
+     
+      toast.error("You got it!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        
+      });
+    } else {
+
+      
+      toast.success(response.status+"%bad", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
+      
+    }
+
+    // setIsLoading(false);
+
+  };
+
 
 
 
@@ -20,27 +96,41 @@ function Page4() {
     borderRadius: "10px",
     background:"transparent",
     boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(0, 0, 0, 0.2)"
-}
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO
-    // Logic for account creation
-  };
+  
 
   // const handleMobVerify = (e) => {
   //   e.preventDefault();
   // }
 
-  const handleFileUpload = (file) => {
-    // TODO
-    // logic
-  };
+  // const handleFileUpload = (file) => {
+  //   // TODO
+  //   // logic
+  // };
 
   return (
+  <>
+    <ToastContainer />
+  
     
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={styles}>
+      <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-1" htmlFor="username">
+            Username
+            <span className="text-red-500">*</span>
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Your Username"
+            required
+          />
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="name">
             Full Name
@@ -48,36 +138,28 @@ function Page4() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name"
             type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Your Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
-        <div className="flex space-x-4 mb-4">
+        <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="phoneNo">
             Phone Number
             <span className="text-red-500">*</span>
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="phoneNo"
             type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
             placeholder="Mobile"
-            value={phone}
-            onChange={(e) => setPhoneNo(e.target.value)}
             required
           />
-
-          <button
-            className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Verify
-          </button>
-
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="dob">
@@ -86,34 +168,28 @@ function Page4() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="dob"
+            name="dob"
             type="date"
+            value = {formData.dob}
+            onChange={handleChange}
             placeholder="date"
-            value={dob}
-            onChange={(e) => setDOB(e.target.value)}
             required
           />
         </div>
-        <div className="flex space-x-4 mb-4">
+        <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="email">
             Email
             <span className="text-red-500">*</span>
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="text"
+            name="email"
+            type="email"
             placeholder="Email Id"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
             required
           />
-          <button
-            className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Verify
-          </button>
         </div>
 
         <div className="mb-4">
@@ -124,11 +200,11 @@ function Page4() {
           <div className="mb-3">
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="street"
+              name="street"
               type="text"
               placeholder="Street Address"
-              value={street}
-              onChange={(e) => setStreetAddr(e.target.value)}
+              value={formData.street}
+              onChange={handleChange}
               required
           />
           </div>
@@ -136,29 +212,29 @@ function Page4() {
             <div className="flex space-x-4">
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="city"
+                name="city"
                 type="text"
                 placeholder="City"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={formData.city}
+                onChange={handleChange}
                 required
               />
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="pin"
+                name="pin"
                 type="text"
                 placeholder="Pincode"
-                value={pin}
-                onChange={(e) => setPin(e.target.value)}
+                value={formData.pin}
+                onChange={handleChange}
                 required
             />
             </div>
           </div>
           <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
             required
           >
             <option value="">--Select State--</option>
@@ -201,9 +277,9 @@ function Page4() {
           </label>
           <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="accountType"
-            value={accountType}
-            onChange={(e) => setAccountType(e.target.value)}
+            name="accountType"
+            value={formData.accountType}
+            onChange={handleChange}
             required
           >
             <option value="">--Select Account Type--</option>
@@ -213,10 +289,7 @@ function Page4() {
           </select>
         </div>
 
-
-
-
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-1" htmlFor="pdf">
             Upload PDF of valid identity card
             <span className="text-red-500">*</span>
@@ -229,7 +302,7 @@ function Page4() {
             onChange={(e) => handleFileUpload(e.target.files[0])}
             required
           />
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-center">
           <button
@@ -241,6 +314,7 @@ function Page4() {
         </div>
       </form>
     </div>
+    </>
   )
 }
 

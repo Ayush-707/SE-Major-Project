@@ -5,8 +5,6 @@ import {ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
 
- 
-
   const [loginData,setLoginData] = useState ({
     userName: '',
     pass: ''
