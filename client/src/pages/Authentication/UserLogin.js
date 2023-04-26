@@ -182,13 +182,13 @@ const Auth = () => {
           <form onSubmit = {handleSubmit1}>
             <div className="mb-4">
               <label htmlFor="username" className="block mb-2 font-semibold text-gray-800">Username</label>
-              <input type="text" name="userName" value = {loginData.userName} formName = "form1" onChange={(e) => handleChange(e, "form1")}   placeholder="Enter Your Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+              <input id="login_user_username" type="text" name="userName" value = {loginData.userName} formName = "form1" onChange={(e) => handleChange(e, "form1")}   placeholder="Enter Your Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
             </div>
             <div className="mb-4">
               <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
-              <input type="password" name="pass" value = {loginData.pass} formName = "form1" onChange={(e) => handleChange(e, "form1")}  placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+              <input id="login_user_password" type="password" name="pass" value = {loginData.pass} formName = "form1" onChange={(e) => handleChange(e, "form1")}  placeholder="Enter Your Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
             </div>
-              <button type = "submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
+              <button id="login_user_button" type = "submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
                 Login
               </button>
           </form>
@@ -208,30 +208,30 @@ const Auth = () => {
       <form onSubmit = {handleSubmit2}>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2 font-semibold text-gray-800">Name</label>
-          <input type="text" name="fullName" value = {signupData.fullName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Your Full Name" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+          <input id="signup_name" type="text" name="fullName" value = {signupData.fullName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Your Full Name" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
         </div>
         <div className="mb-4">
           <label htmlFor="username" className="block mb-2 font-semibold text-gray-800">Username</label>
-          <input type="text" name = "newUserName" value = {signupData.newUserName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+          <input id="signup_username" type="text" name = "newUserName" value = {signupData.newUserName} onChange={(e) => handleChange(e, "form2")}  placeholder="Enter Username" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
         </div>
         <div className="mb-4">
         
           <label htmlFor="email" className="block mb-2 font-semibold text-gray-800">Email</label>
-          <input type="email" name = "email" value = {signupData.email} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
+          <input id="signup_email" type="email" name = "email" value = {signupData.email} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Your Email" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required/>
         </div>
         <div className="flex mb-4">
   <div className="w-1/2 inline-block mr-2">
     <label htmlFor="password" className="block mb-2 font-semibold text-gray-800">Password</label>
-    <input type="password" name="passWord" value={signupData.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+    <input id="signup_password" type="password" name="passWord" value={signupData.passWord} onChange={(e) => handleChange(e, "form2")} placeholder="Enter Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
   </div>
   <div className="w-1/2 inline-block ml-2">
     <label htmlFor="confirmPassword" className="block mb-2 font-semibold text-gray-800">Confirm Password</label>
-    <input type="password" name="confirmPass" value={signupData.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
+    <input id="signup_confpassword" type="password" name="confirmPass" value={signupData.confirmPass} onChange={(e) => handleChange(e, "form2")} placeholder="Confirm Password" className="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:shadow-outline-blue focus:border-blue-500" required />
   </div>
 </div>
 
 
-        <button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
+        <button id="signup_button" type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
             Sign Up
             </button>
         </form>
