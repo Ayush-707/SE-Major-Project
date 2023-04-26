@@ -6,7 +6,6 @@ require("./Database/Connection");
 const bodyParser = require('body-parser');
 const router = require("./Routes/Auth/AuthRoute");
 const router2 = require("./Routes/UserFunctions/UserRoute");
-const investRoute = require("./Routes/UserFunctions/investRoute");
 
 const withdrawRoutes=require("./Routes/Adminr/withdrawRoute");
 const depositRoutes = require("./Routes/Adminr/depositRoute");
@@ -21,6 +20,8 @@ app.use('/api', router);
 app.use(router);
 app.use('/api', router2);
 app.use(router2);
+app.use('/api/new-account', router3);
+app.use(router3);
 app.use("/api/withdraw",withdrawRoutes);
 app.use(bodyParser.json());
 app.use("/api/deposit",depositRoutes);
