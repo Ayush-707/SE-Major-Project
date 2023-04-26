@@ -3,11 +3,11 @@
 
 
 const express = require('express');
-const { createInvestment } = require("../../Controllers/UserFunctions/investController");
+const investController = require("../../Controllers/UserFunctions/investController");
 
 const router = express.Router();
 
 // Route for handling form submission
-router.post('/', createInvestment);
+router.post('/', investController.createInvestment);
 
 module.exports = router;

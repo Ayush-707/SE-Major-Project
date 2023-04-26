@@ -1,15 +1,83 @@
 import React, { useState } from 'react';
 import {Investment} from '../../Services/APIs/UserAPI';
+import {ToastContainer, toast } from 'react-toastify';
 const InvestmentForm = () => {
   // State variables to store form inputs
-  const [userID, setUserID] = useState('');
+
+  const [investData, setInvestData] = useState({
+      userID:'',
+      phoneNo:'',
+      fundType:'',
+      investmentAmount: '',
+      duration: '',
+    });
+
+    const handleChange = (event) => {
+      const { id, value } = event.target;
+      const trimmedValue = value.trim(); 
+      setInvestData((prevFormData) => ({
+        ...prevFormData,
+        [id]: trimmedValue,
+      }));
+    };
+
+
+ /* const [userID, setUserID] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
   const [fundType, setFundType] = useState('');
   const [investmentAmount, setInvestmentAmount] = useState('');
-  const [duration, setDuration] = useState('');
+  const [duration, setDuration] = useState('');*/
 
-  // Handle form submission
   const handleSubmit = async (event) => {
+    event.preventDefault();
+
+
+    console.log(investData);
+    
+
+    const response = await  Investment(investData);
+    console.log(response.body);
+    if (response.status === 201 ) {
+      
+      toast.error("Invalid Phone Number!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
+
+    }  else if (response.status === 400) {
+      toast.error("Internal Server Error!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        
+      });
+    }
+    else {
+
+      
+      toast.success("Form Submitted Successfully", {
+        autoClose: 5000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
+      
+    }
+
+   
+
+  };
+ 
+  
+ /* const handleSubmit = async (event) => {
     event.preventDefault();
   
     // Do something with form data, e.g. submit to a backend API
@@ -35,9 +103,12 @@ const InvestmentForm = () => {
       console.error('Failed to submit investment data:', error);
     }
    
-  };
+  };*/
   
   return (
+
+    <>
+    <ToastContainer />
     <form className="w-96 max-w-md mx-auto mt-8" onSubmit={handleSubmit}>
       <h1 className="text-2xl font-semibold mb-6">Investment Form</h1>
       <div className="mb-4">
@@ -49,8 +120,8 @@ const InvestmentForm = () => {
           id="userID"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
           placeholder="Enter User ID"
-          value={userID}
-          onChange={(event) => setUserID(event.target.value)}
+          value={investData.userID}
+          onChange={handleChange}
         />
       </div>
       <div className="mb-4">
@@ -62,8 +133,8 @@ const InvestmentForm = () => {
           id="phoneNumber"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
           placeholder="Enter Phone Number"
-          value={phoneNo}
-          onChange={(event) => setPhoneNo(event.target.value)}
+          value={investData.phoneNo}
+          onChange={handleChange}
         />
       </div>
       <div className="mb-4">
@@ -73,8 +144,8 @@ const InvestmentForm = () => {
         <select
           id="fundType"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-          value={fundType}
-          onChange={(event) => setFundType(event.target.value)}
+          value={investData.fundType}
+          onChange={handleChange}
         >
           <option value="">Select fund type</option>
           <option value="Equity">Equity</option>
@@ -91,8 +162,8 @@ const InvestmentForm = () => {
           id="investmentAmount"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
           placeholder="Enter investment amount"
-          value={investmentAmount}
-          onChange={(event) => setInvestmentAmount(event.target.value)}
+          value={investData.investmentAmount}
+          onChange={handleChange}
         />
       </div>
       <div className="mb-4">
@@ -104,8 +175,8 @@ const InvestmentForm = () => {
           id="duration"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
           placeholder="Enter the duration"
-          value={duration}
-          onChange={(event) => setDuration(event.target.value)}
+          value={investData.duration}
+          onChange={handleChange}
         />
       </div>
       <button
@@ -116,12 +187,13 @@ const InvestmentForm = () => {
         Submit
       </button>
     </form>
+    </>
   );
 };
 
 export default InvestmentForm;
 
-/* const formData = {
+/* const investData = {
       userID,
       phoneNo,
       fundType,
@@ -135,7 +207,7 @@ export default InvestmentForm;
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(investData)
       });
   
       if (response.ok) {
@@ -146,7 +218,7 @@ export default InvestmentForm;
         setInvestmentAmount('');
         setDuration('');
   
-        console.log('Form data submitted successfully:', formData);
+        console.log('Form data submitted successfully:', investData);
       } else {
         console.error('Failed to submit form data:', response.status);
       }
