@@ -6,12 +6,10 @@ import NewAccount from './pages/User/NewAccount'
 import Transaction from './pages/User/Transaction'
 import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
-
-
 import Log from './pages/Authentication/AdminLogin'
 import AdminHomePage from './pages/Authentication/AdminHome'
 import Deposit from './pages/Admin/Deposit'
-import Withdraw from './pages/Admin/Withdraw'
+import Investment from './pages/User/Investment'
 import Req from './pages/Admin/PendingReq'
 
 
