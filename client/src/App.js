@@ -2,17 +2,19 @@ import Navbar from './Components/Sidebar/Navbar';
 import Login from './pages/Authentication/UserLogin';
 import UserHomePage from './pages/Authentication/UserHome';
 import Contact from './pages/User/ContactUs'
-import Deposit from './pages/Admin/Deposit'
 import NewAccount from './pages/User/NewAccount'
 import Transaction from './pages/User/Transaction'
-import Investment from './pages/User/Investment'
-import transactionHistory from './pages/User/transactionHistory'
 import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
 
 
 import Log from './pages/Authentication/AdminLogin'
 import AdminHomePage from './pages/Authentication/AdminHome'
+import Deposit from './pages/Admin/Deposit'
+import Withdraw from './pages/Admin/Withdraw'
+import Req from './pages/Admin/PendingReq'
+
+
 
 //import Page6 from './pages/Misc/'
 // import Adminloan from './pages/Loan&Transaction/Adminloan'
@@ -51,6 +53,8 @@ function App() {
             <Route path = '/Admin/Home' element = {<AdminHomePage/>} /> 
             <Route path = '/Admin/Withdraw' element = {<Withdraw/>} />
             <Route path = '/Admin/Deposit' element = {<Deposit/>} />
+            <Route path = '/Admin/PendingReq' element = {<Req/>} />
+
             
         
       </Routes>
