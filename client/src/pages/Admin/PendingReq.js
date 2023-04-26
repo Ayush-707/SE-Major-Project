@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetAccountReq } from "../../Services/APIs/AdminAPI";
+import { GetAccountReq, AccountReq, createNew } from "../../Services/APIs/AdminAPI";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,13 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import {ToastContainer, toast } from 'react-toastify';
+
+
 
 function PendingReq() {
   const [requests, setRequests] = useState([]);
-
+ 
   useEffect(() => {
     const fetchRequests = async () => {
-      console.log('hello');
       const response = await GetAccountReq();
       setRequests(response.data);  
     };
@@ -22,10 +24,33 @@ function PendingReq() {
   },[]);
 
   const handleApprove = async (id) => {
-    const response = 0//await ApproveAccountReq(id);
-    if (response.status === 200) {
+
+    const obj1 = {
+      ID: id,
+      Action: true
+    }
+    const res = await AccountReq(obj1);
+    
+    if (res.status === 200) {
       const updatedRequests = requests.map(req => {
         if (req._id === id) {
+          toast.success("Request Approved!", {
+            autoClose: 1000,
+            hideProgressBar: false,
+            pauseOnHover: false,
+            style: {
+              background: "#6ACF6A",
+              color: "#fff",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              border: "none",
+              boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+            },
+          });
+
+          createAccount(obj1);
+
+          
           return { ...req, status: "Approved" }
         } else {
           return req;
@@ -34,22 +59,73 @@ function PendingReq() {
       setRequests(updatedRequests);
     }
   }
+  const createAccount = async (obj) => {
+    
+    const serverRes = await createNew(obj);
+    console.log(serverRes.data);
+
+    if (serverRes.status === 201) {
+      toast.success("New Account Created!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#6ACF6A",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
+    } else {
+      toast.error("Error While Creating New Account")
+    }
+
+  }
+  const handleReject = async (id) => {
+
+    const obj2 = {
+      ID: id,
+      Action: false
+    }
+    const res = await AccountReq(obj2);
+    
+    if (res.status === 200) {
+      const updatedRequests = requests.map(req => {
+        if (req._id === id) {
+          toast.error("Request Rejected", {
+            autoClose: 2000,
+            hideProgressBar: true,
+            pauseOnHover: false,
+          });
+          
+          return { ...req, status: "Rejected" }
+        } else {
+          return req;
+        }
+      });
+      setRequests(updatedRequests);
+    }
+  }
+
+
+
 
   return (
 
   <>
 
-{/* <h1 class="text-3xl font-bold mb-4 mt-2 text-center"></h1> */}
-    
-
+      
+  <ToastContainer />
     <TableContainer component={Paper} sx={{ width: '99.7%', marginLeft: '2px', marginRight: '2px', overflowX: 'auto' }}>
       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
       <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'purple' }}>
           <TableRow>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>NAME</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>PHONE</TableCell>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '18%', textAlign: 'center' }}>EMAIL</TableCell>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '25%', textAlign: 'center' }}>ADDRESS</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>EMAIL</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>DOB</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>TYPE</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>STATUS</TableCell>
@@ -61,21 +137,21 @@ function PendingReq() {
         <TableBody>
           {requests.map((request, index) => (
             <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-200" : ""}>
-              <TableCell sx = {{textAlign: 'center'}}>{request.name}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.phone}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.email}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.address}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.dob}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.accountType}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>{request.status}</TableCell>
-              <TableCell sx = {{textAlign: 'center'}}>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.name}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.phone}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.email}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '17px'}}>{request.address}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.dob}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.accountType}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.status}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>
             {request.status === 'Pending' ? 
               <>
                 <Button variant="contained" color="primary" onClick={() => handleApprove(request._id)}>Approve</Button>
-                <Button variant="contained" color="secondary" sx={{ marginLeft: '5px' }}>Reject</Button>
+                <Button variant="contained" color="secondary" sx={{ marginLeft: '5px' }} onClick={() => handleReject(request._id)}>Reject</Button>
               </>
               :
-              <Button variant="contained" disabled>Already {request.status}</Button>
+              <Button variant="contained" disabled>{request.status}</Button>
             }
           </TableCell>
         </TableRow>

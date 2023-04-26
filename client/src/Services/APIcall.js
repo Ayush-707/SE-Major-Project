@@ -10,8 +10,9 @@ export const commonrequest = async (methods,url,body,header) => {
         },
         data:body
     }
-
+    
     return axios(config).then((data) => {
+        
         return data
     }).catch((error) => {
         return error
