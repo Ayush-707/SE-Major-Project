@@ -1,0 +1,22 @@
+{
+  "name": "se-major-project",
+  "version": "1.0.0",
+  "description": "* User Authentication: The system should have a secure authentication mechanism that allows users to log in and access their accounts. This can be achieved using JWT tokens or other secure authentication methods.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayush-707/SE-Major-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ayush-707/SE-Major-Project/issues"
+  },
+  "homepage": "https://github.com/Ayush-707/SE-Major-Project#readme",
+  "dependencies": {
+    "@testing-library/react": "^14.0.0"
+  }
+}
