@@ -33,9 +33,10 @@ function Navbar() {
             <FaIcons.FaBars onClick={isClickable ? showSidebar : null} />
           </Link>
           
-          <Link to = '/' className="mx-auto text-white font-semibold text-3xl tracking-wide text-center hover:underline">
-           
-            &nbsp;Bank Management App
+          <Link to="/" className="mx-auto text-white font-semibold text-3xl tracking-wide text-center hover:underline">
+            {location.pathname === '/Admin/PendingReq'
+              ? 'New Account Requests'
+              : 'Bank Management App'}
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

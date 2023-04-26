@@ -34,7 +34,7 @@ exports.userNewAccountRequest = async (req, res) => {
       email,
       accountType,
       address: `${street}, ${city}, ${pin}, ${state}`,
-      status: "pending", // set initial status to "pending"
+      status: "Pending", // set initial status to "pending"
     });
 
     await accountRequest.save(); // save the new account request to the database
