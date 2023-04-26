@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const router = require("./Routes/Auth/AuthRoute");
 const router2 = require("./Routes/UserFunctions/UserRoute");
 const withdrawRoutes=require("./Routes/Adminr/withdrawRoute");
-const depositRoutes = require("./Routes/Adminr/depositRoute");
+const router3 = require("./Routes/Adminr/AdminRoute");
 const PORT = 4002;
 
 
@@ -20,8 +20,8 @@ app.use(router);
 app.use('/api', router2);
 app.use(router2);
 app.use("/api/withdraw",withdrawRoutes);
-app.use(bodyParser.json());
-app.use("/api/deposit",depositRoutes);
+app.use('/api',router3);
+app.use(router3);
 app.use(bodyParser.json());
 
 app.listen(PORT,()=>{

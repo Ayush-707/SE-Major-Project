@@ -16,7 +16,7 @@ export const AdminOptions = [
     {
         title: "Deposit Money",
         path: '/Admin/Deposit',
-        icon: <FaIcons.FaArrowUp/>,
+        icon: <i class="fa-solid fa-circle-dollar-to-slot"></i>,
         cName: 'nav-text'
     },
 
@@ -24,6 +24,13 @@ export const AdminOptions = [
         title: "Withdraw Money",
         path: '/Admin/Withdraw',
         icon: <FaIcons.FaArrowDown/>,
+        cName: 'nav-text'
+    },
+
+    {
+        title: "Account Requests",
+        path: '/Admin/PendingReq',
+        icon: <i class="fa-solid fa-circle-pause"></i>,
         cName: 'nav-text'
     },
 

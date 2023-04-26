@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const sendMail = require( "../../Controllers/UserFunctions/ContactController" ); 
-const newAccountRequest = require( "../../Controllers/UserFunctions/RequestAccountController" ); 
+const newAccountRequest = require( "../../Controllers/UserFunctions/RqstAcntCntrlr" ); 
 const bodyParser = require('body-parser');
 const path = require('path');
 
