@@ -6,6 +6,7 @@ import Deposit from './pages/Admin/Deposit'
 import NewAccount from './pages/User/NewAccount'
 import Transaction from './pages/User/Transaction'
 import Investment from './pages/User/Investment'
+import transactionHistory from './pages/User/transactionHistory'
 import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
 
@@ -34,12 +35,15 @@ function App() {
 
 
             <Route exact path = '/User/Auth' element = {<Login/>} />
-            <Route path = '/User/Home' element = {<UserHomePage/>} />
+            <Route path = '/User/Home' element = {<UserHomePage/>} />transactionHistory
             <Route path = '/User/Contact' element = {<Contact/>} />
             <Route path = '/User/New-Account' element = {<NewAccount/>} />
             <Route path = '/User/Transaction' element = {<Transaction/>} />
+            <Route path = '/User/transactionHistory' element = {<transactionHistory/>} />
             <Route path = '/User/Investment' element = {<Investment/>} />
             
+            
+           
 
 
 

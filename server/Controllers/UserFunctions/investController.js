@@ -1,3 +1,7 @@
+
+
+
+
 const Investment = require("../../Database/Models/investModel");
 
 // Handle form submission
