@@ -1,0 +1,21 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "UserLoginSignUp.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@testing-library/react": "^14.0.0",
+    "react-test-renderer": "^18.2.0"
+  }
+}

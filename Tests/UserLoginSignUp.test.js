@@ -2,9 +2,9 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Login from './../client/src/pages/Authentication/UserLogin';
 
-// Command to run tests=> npm test
-// Command to run only Login tests=> npm test -- --grep "Login page"
-// Command to run only Signup tests =>npm test -- --grep "Signup page"
+// Command to run tests=> npm test -- --testPathPattern='UserLoginSignUp.test.js'
+// Command to run only Login tests=> npm test -- --testPathPattern='UserLoginSignUp.test.js' --testNamePattern='Login page'
+// Command to run only Signup tests =>npm test -- --testPathPattern='UserLoginSignUp.test.js' --testNamePattern='Signup page'
 
 
 
@@ -17,9 +17,9 @@ describe('Login page', () => {
     });
 
     render(
-      <MemoryRouter>
-        <Login />
-      </MemoryRouter>
+        <MemoryRouter>
+          <Login />
+        </MemoryRouter>
     );
 
     // Fill in the login form with valid credentials
@@ -42,7 +42,7 @@ describe('Login page', () => {
     });
 
     render(
-      <MemoryRouter>
+        <MemoryRouter>
         <Login />
       </MemoryRouter>
     );
@@ -67,7 +67,7 @@ describe('Login page', () => {
     });
 
     render(
-      <MemoryRouter>
+        <MemoryRouter>
         <Login />
       </MemoryRouter>
     );
