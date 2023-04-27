@@ -11,6 +11,7 @@ import AdminHomePage from './pages/Authentication/AdminHome'
 import Deposit from './pages/Admin/Deposit'
 import Investment from './pages/User/Investment'
 import Req from './pages/Admin/PendingReq'
+import Display from './pages/User/display'
 
 
 
@@ -35,11 +36,11 @@ function App() {
 
 
             <Route exact path = '/User/Auth' element = {<Login/>} />
-            <Route path = '/User/Home' element = {<UserHomePage/>} />transactionHistory
+            <Route path = '/User/Home' element = {<UserHomePage/>} />
             <Route path = '/User/Contact' element = {<Contact/>} />
             <Route path = '/User/New-Account' element = {<NewAccount/>} />
             <Route path = '/User/Transaction' element = {<Transaction/>} />
-            <Route path = '/User/transactionHistory' element = {<transactionHistory/>} />
+            <Route path = '/User/display' element = {<Display/>} />
             <Route path = '/User/Investment' element = {<Investment/>} />
             
             
