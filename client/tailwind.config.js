@@ -35,6 +35,11 @@ module.exports = {
   variants: {
     extend: {},
   },
+  externals: {
+    'react': 'React',
+    'react-dom' :'ReactDom'
+
+  },
   plugins: [
     require("@tailwindcss/forms")({
       strategy: "class",
