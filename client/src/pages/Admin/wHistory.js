@@ -1,5 +1,5 @@
 import React from 'react'
-import Table, { AvatarCell, SelectColumnFilter, StatusPill } from '../../tables/Table'
+import Table, { AvatarCell, SelectColumnFilter, StatusPill } from '../../tables/wTable'
 
 const getData = () => {
   const data = [
@@ -9,31 +9,25 @@ const getData = () => {
   return [...data, ...data, ...data]
 }
 
-function Display() {
+function Whistory() {
   const columns = React.useMemo(() => [
     {
-      Header: "User Id",
+      Header: "Account Number",
       accessor: 'name',
       Cell: AvatarCell,
       imgAccessor: "imgUrl",
       emailAccessor: "email",
     },
     {
-      Header: "Reciever Id",
+      Header: "Withdraw Amount",
       accessor: 'status',
-      Cell: StatusPill,
-     
-    },
-    {
-      Header: "Transaction Amount",
-      accessor: 'amount',
       Cell: StatusPill,
      
     },
 
     {
-      Header: "Transaction Date",
-      accessor: 'age',
+      Header: "Withdraw Date",
+      accessor: 'date',
     },
     
     
@@ -45,7 +39,7 @@ function Display() {
     <div className="min-h-screen bg-gray-100 text-gray-900">
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div className="">
-          <h1 className="text-xl font-semibold">Transaction History</h1>
+          <h1 className="text-xl font-semibold">Withdraw History</h1>
         </div>
         <div className="mt-6">
           <Table columns={columns} data={data} />
@@ -55,4 +49,4 @@ function Display() {
   );
 }
 
-export default Display;
+export default Whistory;

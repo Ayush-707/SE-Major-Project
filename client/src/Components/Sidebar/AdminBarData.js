@@ -21,8 +21,22 @@ export const AdminOptions = [
     },
 
     {
+        title: "Deposit History",
+        path: '/Admin/History',
+        icon: <FaIcons.FaArrowUp/>,
+        cName: 'nav-text'
+    },
+
+    {
         title: "Withdraw Money",
         path: '/Admin/Withdraw',
+        icon: <i class="fa-solid fa-circle-dollar-to-slot"></i>,
+        cName: 'nav-text'
+    },
+
+    {
+        title: "Withdraw History",
+        path: '/Admin/wHistory',
         icon: <FaIcons.FaArrowDown/>,
         cName: 'nav-text'
     },

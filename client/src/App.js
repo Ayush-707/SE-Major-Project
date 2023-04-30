@@ -12,6 +12,8 @@ import Deposit from './pages/Admin/Deposit'
 import Investment from './pages/User/Investment'
 import Req from './pages/Admin/PendingReq'
 import Display from './pages/User/display'
+import History from './pages/Admin/History'
+import Whistory from './pages/Admin/wHistory'
 
 
 
@@ -53,6 +55,9 @@ function App() {
             <Route path = '/Admin/Withdraw' element = {<Withdraw/>} />
             <Route path = '/Admin/Deposit' element = {<Deposit/>} />
             <Route path = '/Admin/PendingReq' element = {<Req/>} />
+            <Route path = '/Admin/History' element = {<History/>} />
+            <Route path = '/Admin/wHistory' element = {<Whistory/>} />
+
 
             
         
@@ -66,3 +71,43 @@ function App() {
 }
 
 export default App;
+
+/*"@testing-library/react": "^14.0.0",
+
+
+{
+  "name": "se-major-project",
+  "version": "1.0.0",
+  "description": "* User Authentication: The system should have a secure authentication mechanism that allows users to log in and access their accounts. This can be achieved using JWT tokens or other secure authentication methods.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayush-707/SE-Major-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ayush-707/SE-Major-Project/issues"
+  },
+  "homepage": "https://github.com/Ayush-707/SE-Major-Project#readme",
+  "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "@testing-library/react": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@babel/plugin-syntax-jsx": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    
+    "react-test-renderer": "^18.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
+
+
+*/

@@ -107,7 +107,7 @@ export function AvatarCell({ value, column, row }) {
   )
 }
 
-function Table({ columns, data }) {
+function WTable({ columns, data }) {
   const navigate = useNavigate();
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -150,7 +150,7 @@ function Table({ columns, data }) {
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("../../User/Transaction")} >Transact Money</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" style={{ marginLeft: "auto", }} onClick={() => navigate("../../Admin/Withdraw")} >Withdraw Money</button>
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
@@ -295,4 +295,4 @@ function Table({ columns, data }) {
   )
 }
 
-export default Table;
+export default WTable;
