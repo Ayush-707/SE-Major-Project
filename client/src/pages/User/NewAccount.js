@@ -104,160 +104,107 @@ function Page4() {
 
 
   const styles = {
-    width:"600px",
-    border:"black",
-    borderRadius: "10px",
-    background:"transparent",
-    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(0, 0, 0, 0.2)"
-  }
-
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+     
+      maxWidth: '800px',
+      margin: '20px auto',
+      padding: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      backgroundColor: '#f9f9f9',
+      boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)',
+    },
+    label: {
+      fontSize: '18px',
+      fontWeight: 'bold',
+      marginBottom: '10px',
+      marginLeft: '2px'
+      
+    },
+    input: {
+      padding: '10px',
+      marginBottom: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      fontSize: '16px',
+      width: '100%',
+      boxSizing: 'border-box',
+      ':focus': {
+        outline: 'none',
+        border: '1px solid #3B82F6',
+        boxShadow: '0 0 3px #3B82F6',
+      },
+     
+    },
+    select: {
+      padding: '10px',
+      marginBottom: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      fontSize: '16px',
+      width: '100%',
+      boxSizing: 'border-box',
+    },
+    button: {
+      padding: '10px 20px',
+      backgroundColor: '#547CBE',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      fontSize: '18px',
+      fontStyle: 'Bahnschrift SemiBold',
+      cursor: 'pointer',
+      boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)',
+      transition: 'background-color 0.3s ease',
+    },
+    hover: {
+      backgroundColor: '#1D4ED8',
+    }
+  };
   
 
-  // const handleMobVerify = (e) => {
-  //   e.preventDefault();
-  // }
-
-  // const handleFileUpload = (file) => {
-  //   // TODO
-  //   // logic
-  // };
 
   return (
   <>
     <ToastContainer />
   
-    
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-  <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" style={styles}>
-    <div className="mb-4">
-      <label className="block text-gray-700 font-bold mb-1" htmlFor="name">
-        Full Name
-        <span className="text-red-500">*</span>
-      </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" required />
-    </div>
-    <div className="mb-4">
-      <label className="block text-gray-700 font-bold mb-1" htmlFor="phoneNo">
-        Phone Number
-        <span className="text-red-500">*</span>
-      </label>
-      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Mobile" required />
-    </div>
- 
+        <form style={styles.form} onSubmit={handleSubmit}>
+          <label htmlFor="name" style={styles.label}>Name:</label>
+          <input style = {styles.input} type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+          
+          <label htmlFor="phone" style={styles.label}>Phone:</label>
+          <input style = {styles.input} type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required/>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="dob">
-            Date of Birth
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="dob"
-            type="date"
-            value = {formData.dob}
-            onChange={handleChange}
-            placeholder="date"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="email">
-            Email
-            <span className="text-red-500">*</span>
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="email"
-            type="email"
-            placeholder="Email Id"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <label htmlFor="dob" style={styles.label}>Date of Birth:</label>
+          <input style = {styles.input} type="date" id="dob" name="dob" value={formData.dob} onChange={handleChange} required />
 
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="street">
-            Mailing Home Address
-            <span className="text-red-500">*</span>
-          </label>
-          <div className="mb-3">
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="street"
-              type="text"
-              placeholder="Street Address"
-              value={formData.street}
-              onChange={handleChange}
-              required
-          />
-          </div>
-          <div className="mb-3">
-            <div className="flex space-x-4">
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="city"
-                type="text"
-                placeholder="City"
-                value={formData.city}
-                onChange={handleChange}
-                required
-              />
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="pin"
-                type="text"
-                placeholder="Pincode"
-                value={formData.pin}
-                onChange={handleChange}
-                required
-            />
-            </div>
-          </div>
-          <select
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--Select State--</option>
-            <option value="Andhra Pradesh">Andhra Pradesh</option>
-            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-            
+          <label htmlFor="email" style={styles.label}>Email:</label>
+          <input style = {styles.input} type="email" id="email" name="email" value={formData.email} onChange={handleChange} required/>
+
+          <label htmlFor="accountType" style={styles.label}>Account Type:</label>
+          <select style={styles.select} id="accountType" name="accountType" value={formData.accountType} onChange={handleChange} required >
+            <option value="">Select Account Type</option>
+            <option value="savings">Savings Account</option>
+            <option value="current">Current Account</option>
           </select>
 
-        </div>
+          <label htmlFor="street" style={styles.label}>Street Address:</label>
+          <input style = {styles.input} type="text" id="street" name="street" value={formData.street} onChange={handleChange} required/>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-1" htmlFor="accountType">
-            Account Type
-            <span className="text-red-500">*</span>
-          </label>
-          <select
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="accountType"
-            value={formData.accountType}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--Select Account Type--</option>
-            <option value="Savings">Savings</option>
-            <option value="Current">Current</option>
-            <option value="Fixed Deposit">Fixed Deposit</option>
-          </select>
-        </div>
+          <label htmlFor="city" style={styles.label}>City:</label>
+          <input style = {styles.input} type="text" id="city" name="city" value={formData.city} onChange={handleChange} required />
 
-        <div className="flex items-center justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Submit Request
-          </button>
-        </div>
-      </form>
-    </div>
+          <label htmlFor="pin" style={styles.label}>PIN Code:</label>
+          <input style = {styles.input} type="text" id="pin" name="pin" value={formData.pin} onChange={handleChange} required/>
+
+          <label htmlFor="state" style={styles.label}>State:</label>
+          <input style = {styles.input} type="text" id="state" name="state" value={formData.state} onChange={handleChange} required/>
+          
+          <button style = {styles.button} className="hover:bg-blue-700" type="submit">Submit</button>
+        </form> 
+
     </>
   )
 }

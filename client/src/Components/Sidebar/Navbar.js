@@ -25,6 +25,32 @@ function Navbar() {
     navData = AdminOptions;
   }
 
+  let text;
+      switch (location.pathname) {
+        case '/Admin/PendingReq':
+          text = 'New Account Requests';
+          break;
+        case '/Admin/Transactions':
+          text = 'Transaction Management';
+          break;
+        case '/Admin/Users':
+          text = 'User Management';
+          break;
+        case '/User/Contact':
+          text = 'Contact US';
+          break;
+        case '/User/New-Account':
+          text = 'Open New Account';
+          break;
+        case '/User/Investment':
+          text = 'Invest';
+          break;
+        
+        
+        default:
+          text = 'Bank Management App';
+      }
+
   return (
     <>
       <IconContext.Provider value={{color: '#fff'}}>
@@ -32,11 +58,9 @@ function Navbar() {
           <Link to="#" className={`menu-bars ${isClickable ? '' : 'disabled'}`}>
             <FaIcons.FaBars onClick={isClickable ? showSidebar : null} />
           </Link>
-          
+          let text;
           <Link to="/" className="mx-auto text-white font-semibold text-3xl tracking-wide text-center hover:underline">
-            {location.pathname === '/Admin/PendingReq'
-              ? 'New Account Requests'
-              : 'Bank Management App'}
+            {text}
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
