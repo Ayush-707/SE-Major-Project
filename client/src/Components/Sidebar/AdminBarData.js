@@ -13,12 +13,14 @@ export const AdminOptions = [
         cName: 'nav-text'
     },
 
+
     {
         title: "Deposit Money",
-        path: '/Admin/Deposit',
-        icon: <i class="fa-solid fa-circle-dollar-to-slot"></i>,
+        path: '/Admin/Depoe',
+        icon: <i class="fa-solid fa-circle-pause"></i>,
         cName: 'nav-text'
     },
+    
 
     {
         title: "Deposit History",
@@ -55,12 +57,7 @@ export const AdminOptions = [
         cName: 'nav-text'
     },
 
-    {
-        title: "Deposit",
-        path: '/Admin/Depoe',
-        icon: <i class="fa-solid fa-circle-pause"></i>,
-        cName: 'nav-text'
-    },
+   
 
     {
         title: "Login",

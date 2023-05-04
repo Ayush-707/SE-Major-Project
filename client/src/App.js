@@ -8,7 +8,6 @@ import Withdraw from './pages/Admin/Withdraw'
 import Landing from './pages/Authentication/LandingPage'
 import Log from './pages/Authentication/AdminLogin'
 import AdminHomePage from './pages/Authentication/AdminHome'
-import Deposit from './pages/Admin/Deposit'
 import Req from './pages/Admin/PendingReq'
 import Display from './pages/User/display'
 import History from './pages/Admin/History'
@@ -58,7 +57,6 @@ function App() {
             <Route path = '/Admin/Auth' element = {<Log/>} />
             <Route path = '/Admin/Home' element = {<AdminHomePage/>} /> 
             <Route path = '/Admin/Withdraw' element = {<Withdraw/>} />
-            <Route path = '/Admin/Deposit' element = {<Deposit/>} />
             <Route path = '/Admin/PendingReq' element = {<Req/>} />
             <Route path = '/Admin/History' element = {<History/>} />
             <Route path = '/Admin/wHistory' element = {<Whistory/>} />

@@ -3,7 +3,7 @@ import { BACKEND_URL } from "../helper";
 
 
 
-export const WithdrawCall = async(data) => {
+export const Withd = async(data) => {
     return await commonrequest("POST", `${BACKEND_URL}/Admin/Withdraw`, data)
 }
 

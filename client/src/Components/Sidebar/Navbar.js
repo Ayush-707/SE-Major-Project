@@ -45,7 +45,24 @@ function Navbar() {
         case '/User/InAccount':
           text = 'Investment';
           break;
-        
+        case '/Admin/Depoe':
+          text = 'Deposit';
+          break;
+        case '/Admin/Withdraw':
+          text = 'Withdraw';
+          break;
+        case '/User/Transaction':
+            text = 'Transaction';
+            break;
+        case '/User/display':
+            text = 'History';
+              break;
+        case '/Admin/wHistory':
+              text = 'History';
+                break;
+        case '/Admin/History':
+            text = 'History';
+              break;
         
         default:
           text = 'Bank Management App';
