@@ -20,7 +20,7 @@ const UserHomePage = () => {
                 <div className="mb-4">
                     <img
                     className="h-16 w-16 rounded-full mx-auto"
-                    src={process.env.PUBLIC_URL + '/sound.jpg'}              alt="User Avatar"
+                    src={process.env.PUBLIC_URL + '/circle.png'}              alt="User Avatar"
                     />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-800 text-center mb-2">

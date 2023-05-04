@@ -7,24 +7,17 @@ import { useLocation } from "react-router-dom";
 
 const UserHomePage = () => {
 
-  // const { state } = useLocation();
-  // const { username } = state;
-
-  // const [username, setUsername] = useState("");
+ 
 
   const username = JSON.parse(localStorage.getItem('currentUser'));
 
 
-  // useEffect(() => {
-  //   const item = JSON.parse(localStorage.getItem('currentUser'));
-  //   if (item) {
-  //     setUsername(item);
-  //   }
-  // }, [username]);
+  
     
   const styles = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`,
-    overflow: `hidden`
+    overflow: `hidden`,
+    height: `89vh`
   }
 
   const [isLoading, setIsLoading] = useState(true);
@@ -67,7 +60,7 @@ const UserHomePage = () => {
             <div className="mb-4">
               <img
                 className="h-16 w-16 rounded-full mx-auto"
-                src={process.env.PUBLIC_URL + '/sound.jpg'}
+                src={process.env.PUBLIC_URL + '/circle.png'}
                 alt="User Avatar"
               />
             </div>

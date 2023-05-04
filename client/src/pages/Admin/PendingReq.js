@@ -126,8 +126,17 @@ function PendingReq() {
 
       
                     <ToastContainer />
-                      <TableContainer component={Paper} sx={{ width: '99.7%', marginLeft: '2px', marginRight: '2px', overflowX: 'auto' }}>
-                        <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
+                                    <TableContainer 
+                                    component={Paper} 
+                                    sx={{ 
+                                      width: '99.7%', 
+                                      marginLeft: '2px', 
+                                      marginRight: '2px', 
+                                      overflowX: 'auto',
+                                      borderRadius: '8px' // add a border radius value here
+                                    }}
+                                      >
+                                      <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
                         <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'purple' }}>
                             <TableRow>
                               <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>NAME</TableCell>

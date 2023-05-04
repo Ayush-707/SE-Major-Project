@@ -34,7 +34,12 @@ const Transaction = () => {
   
   const handleConfirm = async () => {
     try {
-        const response = await Transact(id, receiverId, amount);
+      const transactionData = {
+        id,
+        receiverId,
+        amount
+      }
+        const response = await Transact(transactionData);
       // show success message to user
       alert('Transaction completed successfully!');
       // redirect to transaction history page
@@ -55,8 +60,19 @@ const Transaction = () => {
     setConfirming(false);
   };
 
+  const styles = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/b.png)`,
+    height: "100vh",
+    
+    
+  }
+
+
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+    <>
+    <section style={ styles }>
+    <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Transact Money</h1>
       {confirming ? (
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -90,17 +106,17 @@ const Transaction = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          className=" bg-gray-100 shadow-md w-2/3 rounded px-8 pt-6 pb-8 mb-4"
         >
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-              Your ID
+              Enter Your Account Number
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="id"
               type="text"
-              placeholder="Your ID"
+              placeholder="Type Here"
               value={id}
               onChange={(e) => setId(e.target.value)}
             />
@@ -110,20 +126,20 @@ const Transaction = () => {
               className="block text-gray-700 font-bold mb-2"
               htmlFor="receiverId"
             >
-              Receiver ID
+              Enter Receiver's Account Number
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="receiverId"
               type="text"
-              placeholder="Receiver ID"
+              placeholder="Type Here"
               value={receiverId}
               onChange={(e) => setReceiverId(e.target.value)}
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
-            Date :{currentDate}
+            Date : <span className="font-normal">{currentDate}</span>
             </label>
 
           </div>
@@ -148,13 +164,13 @@ const Transaction = () => {
           </div>
           <div className="flex items-center justify-center">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 w-96 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Submit
             </button>
             <button
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+              className=" bg-gray-500 w-96 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
               onClick={handleCancel}
             >
               Cancel
@@ -163,6 +179,8 @@ const Transaction = () => {
         </form>
       )}
     </div>
+    </section>
+    </>
   );
 };
 

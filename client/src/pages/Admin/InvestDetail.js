@@ -134,7 +134,16 @@ function InvestDetail() {
   <ToastContainer />
 
  
-    <TableContainer component={Paper} sx={{ width: '99.7%', marginLeft: '2px', marginRight: '2px', overflowX: 'auto' }}>
+          <TableContainer 
+          component={Paper} 
+          sx={{ 
+            width: '99.7%', 
+            marginLeft: '2px', 
+            marginRight: '2px', 
+            overflowX: 'auto',
+            borderRadius: '8px' // add a border radius value here
+          }}
+            >
       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
       <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'purple' }}>
           <TableRow>
@@ -145,9 +154,7 @@ function InvestDetail() {
            
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>TYPE</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>Amount</TableCell>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>STATUS</TableCell>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>ACTION</TableCell>
-
+            
           </TableRow>
       </TableHead>
 
@@ -161,17 +168,7 @@ function InvestDetail() {
               
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.accountType}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.amount}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.status}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>
-            {request.status === 'Pending' ? 
-              <>
-                <Button variant="contained" color="primary" onClick={() => handleApprove(request._id)}>Approve</Button>
-                <Button variant="contained" color="secondary" sx={{ marginLeft: '5px' }} onClick={() => handleReject(request._id)}>Reject</Button>
-              </>
-              :
-              <Button variant="contained" disabled>{request.status}</Button>
-            }
-          </TableCell>
+              
         </TableRow>
       ))}
     </TableBody>
