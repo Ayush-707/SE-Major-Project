@@ -42,8 +42,8 @@ function Navbar() {
         case '/User/New-Account':
           text = 'Open New Account';
           break;
-        case '/User/Investment':
-          text = 'Invest';
+        case '/User/InAccount':
+          text = 'Investment';
           break;
         
         

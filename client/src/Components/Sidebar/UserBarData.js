@@ -36,10 +36,11 @@ export const SidebarData = [
         cName: 'nav-text'
     },
 
+
     {
-        title: "Investment",
-        path: '/User/Investment',
-        icon: <FaIcons.FaArrowCircleRight/>,
+        title: "Open Investment Account",
+        path: '/User/InAccount',
+        icon: <i class="fa-solid fa-money-bill-transfer"></i>,
         cName: 'nav-text'
     },
 
