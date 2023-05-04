@@ -10,14 +10,17 @@ const UserHomePage = () => {
   // const { state } = useLocation();
   // const { username } = state;
 
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    const item = JSON.parse(localStorage.getItem('currentUser'));
-    if (item) {
-      setUsername(item);
-    }
-  }, "");
+  const username = JSON.parse(localStorage.getItem('currentUser'));
+
+
+  // useEffect(() => {
+  //   const item = JSON.parse(localStorage.getItem('currentUser'));
+  //   if (item) {
+  //     setUsername(item);
+  //   }
+  // }, [username]);
     
   const styles = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`,
@@ -51,7 +54,7 @@ const UserHomePage = () => {
         setIsLoading(false);
       }
     };
-  
+
     fetchAccountInfo();
   }, [username]);
 

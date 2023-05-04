@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Login,Signup } from '../../Services/APIs/AuthAPI';
 import { useNavigate } from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
@@ -10,7 +10,11 @@ function Auth () {
     pass: ''
   });
 
-  const [currentUser, setCurrentUser] = useState("");
+  // const [currentUser, setCurrentUser] = useState("");
+
+  // useEffect(() => {
+  //   localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  // }, [currentUser]);
 
   const [signupData, setSignupData] = useState ({
     fullName: '',
@@ -78,12 +82,8 @@ function Auth () {
           },
         });
 
-        // navigate("/User/Home", { state: { username: loginData.userName } });
-        avigate("/User/Home");
-        setCurrentUser(loginData.userName);
-        useEffect(() => {
-          localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        }, [currentUser]);
+        localStorage.setItem('currentUser', JSON.stringify(loginData.userName));
+        navigate("/User/Home");
 
       } else {
         throw new Error(loginRes);
