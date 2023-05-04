@@ -52,7 +52,7 @@ exports.createAccount = async (req, res) => {
     const newAccount = new userAccounts({
       accountNumber,
       accountHolderName: accountRequest.name,
-      phone: accountRequest.phone,
+      userName: accountRequest.userName,
       balance: '0'
     });
 

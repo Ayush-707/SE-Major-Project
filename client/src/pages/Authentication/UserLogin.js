@@ -3,7 +3,7 @@ import { Login,Signup } from '../../Services/APIs/AuthAPI';
 import { useNavigate } from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
 
-function Auth ({}) {
+function Auth () {
 
   const [loginData,setLoginData] = useState ({
     userName: '',
