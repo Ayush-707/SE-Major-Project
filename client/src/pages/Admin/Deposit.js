@@ -43,12 +43,18 @@ const Deposit = () => {
   };
 
   const handleCheckBalance = async (e) => {
-  //  setBalance(400);// This line to be deleted
+    setBalance(400);// This line to be deleted
 
     e.preventDefault();
     try {
-      const response = await axios.get(`/api/balance/${id}`);
-      setBalance(response.data.balance);
+      if(String({id}["id"])==''){
+        alert("Enter the Depositer's id")
+      }
+      else{
+      const response = await axios.get(`/Admin/Balance/${id}`);
+      setBalance(response.balance);
+    }
+      
     } catch (err) {
       console.error(err);
       // handle error, e.g. show an error message to the user

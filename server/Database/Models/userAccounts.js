@@ -10,7 +10,7 @@ const userBankAccountSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      phone: {
+      userName: {
         type: String,
         required: true,
         

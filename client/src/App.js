@@ -14,6 +14,8 @@ import Display from './pages/User/display'
 import History from './pages/Admin/History'
 import Whistory from './pages/Admin/wHistory'
 import InAccount from './pages/User/InAccount'
+import FirstPage from './pages/Admin/FirstPage'
+//import AddEmployee from './pages/Admin/AddEmployee'
 
 
 
@@ -57,6 +59,10 @@ function App() {
             <Route path = '/Admin/PendingReq' element = {<Req/>} />
             <Route path = '/Admin/History' element = {<History/>} />
             <Route path = '/Admin/wHistory' element = {<Whistory/>} />
+            <Route path = '/Admin/FirstPage' element = {<FirstPage/>} />
+           
+
+
 
 
             
