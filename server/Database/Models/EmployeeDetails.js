@@ -8,11 +8,22 @@ const employeeDetailsSchema = new Schema({
         trim: true
     },
 
+    EmployeeID: {
+        type: String,
+        required: true,
+        trim: true
+    },
+
    
     Email: {
         type: String,
         required: true,
         unique: true,
+        trim: true
+    },
+
+    oneTimePass: {
+        type: String,
         trim: true
     },
     
