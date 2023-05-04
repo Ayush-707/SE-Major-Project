@@ -6,22 +6,29 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Withdraw = () => {
-  const [id, setId] = useState("");
+  const [accountNumber, setaccountNumber] = useState("");
   const currentDate = new Date().toLocaleDateString();
   const [balance, setBalance] = useState(null);
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // perform deposit logic here
+    // perform withdraw logic here
   };
 
   const handleCheckBalance = async (e) => {
     setBalance(400);// This line to be deleted
+
     e.preventDefault();
     try {
-      const response = await axios.get(`/api/balance/${id}`);
-      setBalance(response.data.balance);
+      if(String({accountNumber}["accountNumber"])==''){
+        alert("Enter the Withdrawer's Account Number")
+      }
+      else{
+      const response = await axios.get(`/Admin/Balance/${accountNumber}`);
+      setBalance(response.balance);
+    }
+      
     } catch (err) {
       console.error(err);
       // handle error, e.g. show an error message to the user
@@ -43,7 +50,7 @@ const Withdraw = () => {
     }
     else{
       
-    const response = await WithdrawCall({"id":id,"amount":amount});
+    const response = await WithdrawCall({"id":accountNumber,"amount":amount});
     console.log(response.data);
     if (response.status === 201 ) {
       
@@ -86,15 +93,15 @@ const Withdraw = () => {
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xxxl">
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-          Withdrawer's ID
+          Withdrawer's Account Number
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="id"
+            id="withdrawersAccountNumber"
             type="text"
-            placeholder="Withdrawer's ID"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            placeholder="Account Number"
+            value={accountNumber}
+            onChange={(e) => setaccountNumber(e.target.value)}
           />
         </div>
         <div className="mb-4 flex items-center justify-center">
