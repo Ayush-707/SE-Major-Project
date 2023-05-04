@@ -34,7 +34,12 @@ const Transaction = () => {
   
   const handleConfirm = async () => {
     try {
-        const response = await Transact(id, receiverId, amount);
+      const transactionData = {
+        id,
+        receiverId,
+        amount
+      }
+        const response = await Transact(transactionData);
       // show success message to user
       alert('Transaction completed successfully!');
       // redirect to transaction history page
