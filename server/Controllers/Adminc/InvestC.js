@@ -4,7 +4,7 @@ const UserDetails = require("../../Database/Models/UserDetails");
 
 exports.sendTable = async (req, res) => {
   try {
-    const tableData = await AccountRequest.find();
+    const tableData = await InvestAccount.find();
     //console.log(tableData);
     res.status(200).json(tableData);
   } catch (error) {
@@ -20,14 +20,14 @@ exports.accountForms = async (req, res) => {
     const {ID, Action} = req.body;
     
     if ( Action === true) {
-      await AccountRequest.updateOne({ _id: ID }, { $set: { status: "Approved" }});
+      await InvestAccountt.updateOne({ _id: ID }, { $set: { status: "Approved" }});
 
       res.status(200).json({message: 'Request Approved'})
     }
 
     if ( Action === false) {
       
-      await AccountRequest.findOneAndRemove({ _id: ID });
+      await InvestAccountt.findOneAndRemove({ _id: ID });
       res.status(200).json({message: 'Request Rejected'})
     }
     
@@ -43,7 +43,7 @@ exports.createInvest = async (req, res) => {
     try {
       const { ID,Action } = req.body;
       console.log(ID);
-      const accountRequest = await AccountRequest.findOneAndDelete({_id: ID});
+      const accountRequest = await InvestAccountt.findOneAndDelete({_id: ID});
       console.log(accountRequest);
       if (!accountRequest) {
         return res.status(404).json({ message: "Account request not found" });

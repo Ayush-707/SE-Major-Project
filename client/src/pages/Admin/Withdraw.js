@@ -5,6 +5,7 @@ import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const Withdraw = () => {
   const [accountNumber, setaccountNumber] = useState("");
   const currentDate = new Date().toLocaleDateString();
@@ -16,6 +17,16 @@ const Withdraw = () => {
     // perform withdraw logic here
   };
 
+  async function updateBalance(accountNumber, newBalance) {
+    try {
+      const response = await axios.patch(`/Admin/Balance/${accountNumber}`, { amount: newBalance });
+      const updatedBalance = response.data.balance;
+      console.log(`Balance updated to ${updatedBalance}`);
+      return updatedBalance;
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const handleCheckBalance = async (e) => {
     setBalance(400);// This line to be deleted
 
@@ -50,6 +61,7 @@ const Withdraw = () => {
     }
     else{
       
+    
     const response = await WithdrawCall({"id":accountNumber,"amount":amount});
     console.log(response.data);
     if (response.status === 201 ) {
@@ -61,7 +73,9 @@ const Withdraw = () => {
       });
 
     } else {
-      setBalance(parseInt(balance)-parseInt({amount}["amount"]));
+      var newBalance=parseInt(balance)-parseInt({amount}["amount"]);
+      updateBalance(accountNumber, newBalance);
+      setBalance(newBalance);
       
       toast.success("Amount withdrawn Successfully", {
         autoClose: 2000,

@@ -34,6 +34,7 @@ exports.investAccount = async (req, res) => {
       accountType,
       amount,
       address: `${address}, ${city}, ${pin}, ${state}`,
+      status: "Pending", // set initial status to "pending"
      
     });
 

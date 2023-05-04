@@ -3,6 +3,8 @@ const express = require("express");
 const depositController = require("../../Controllers/Adminc/depositController");
 const req = require("../../Controllers/Adminc/AccountController")
 const withdrawController = require("../../Controllers/Adminc/withdrawController");
+const invest =  require("../../Controllers/Adminc/InvestC");
+const balanceCheck = require("../../Controllers/AdminAndUser/BallanceController");
 
 const router = express.Router();
 

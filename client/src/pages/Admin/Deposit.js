@@ -5,7 +5,7 @@ import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Deposit = () => {
-  const [id, setId] = useState("");
+  const [accountNumber, setaccountNumber] = useState("");
   const currentDate = new Date().toLocaleDateString();
   const [balance, setBalance] = useState(null);
   const [amount, setAmount] = useState("");
@@ -42,16 +42,27 @@ const Deposit = () => {
    
   };
 
+  async function updateBalance(accountNumber, newBalance) {
+    try {
+      const response = await axios.patch(`/Admin/Balance/${accountNumber}`, { amount: newBalance });
+      const updatedBalance = response.data.balance;
+      console.log(`Balance updated to ${updatedBalance}`);
+      return updatedBalance;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleCheckBalance = async (e) => {
     setBalance(400);// This line to be deleted
 
     e.preventDefault();
     try {
-      if(String({id}["id"])==''){
+      if(String({accountNumber}["accountNumber"])==''){
         alert("Enter the Depositer's id")
       }
       else{
-      const response = await axios.get(`/Admin/Balance/${id}`);
+      const response = await axios.get(`/Admin/Balance/${accountNumber}`);
       setBalance(response.balance);
     }
       
@@ -70,7 +81,7 @@ const Deposit = () => {
       alert("Enter a positive amount to be deposited");
     } else {
       try {
-        const response = await DepositCall({"id":id,"amount":amount});
+        const response = await DepositCall({"id":accountNumber,"amount":amount});
        // const response = await axios.post(`/api/deposit`, { id, amount });
         console.log(response.data);
         if (response.status === 201) {
@@ -80,7 +91,11 @@ const Deposit = () => {
             pauseOnHover: false,
           });
         } else {
-          setBalance(parseInt(balance) + parseInt(amount));
+          //setBalance(parseInt(balance) + parseInt(amount));
+          var newBalance=parseInt(balance)+parseInt({amount}["amount"]);
+      updateBalance(accountNumber, newBalance);
+      setBalance(newBalance);
+
           toast.success("Amount deposited successfully", {
             autoClose: 2000,
             hideProgressBar: true,
@@ -112,15 +127,15 @@ const Deposit = () => {
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-          Deposit ID
+          Depositer's Account Number
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="id"
+            id="accountNumber"
             type="text"
             placeholder="Your ID"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={accountNumber}
+            onChange={(e) => setaccountNumber(e.target.value)}
           />
         </div>
 
