@@ -26,7 +26,7 @@ const createTransaction = async (req, res) => {
       }
   
       // Update sender and receiver balances
-      sender.balance -= parsedAmount;
+      sender.balance = (Number(sender.balance) - parsedAmount).toString();
       receiver.balance = (Number(receiver.balance) + parsedAmount).toString();
   
       // Save changes to the database

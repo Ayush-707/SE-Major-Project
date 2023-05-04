@@ -16,6 +16,7 @@ import Whistory from './pages/Admin/wHistory'
 import InAccount from './pages/User/InAccount'
 import FirstPage from './pages/Admin/FirstPage'
 import InvestDetail from './pages/Admin/InvestDetail'
+import Depoe from './pages/Admin/Depoe'
 //import AddEmployee from './pages/Admin/AddEmployee'
 
 
@@ -47,6 +48,7 @@ function App() {
             <Route path = '/User/Transaction' element = {<Transaction/>} />
             <Route path = '/User/display' element = {<Display/>} />
             <Route path = '/User/InAccount' element = {<InAccount/>} />
+
             
             
            
@@ -62,6 +64,7 @@ function App() {
             <Route path = '/Admin/wHistory' element = {<Whistory/>} />
             <Route path = '/Admin/FirstPage' element = {<FirstPage/>} />
             <Route path = '/Admin/InvestDetail' element = {<InvestDetail/>} />
+            <Route path = '/Admin/Depoe' element = {<Depoe/>} />
            
 
 

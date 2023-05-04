@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import axios from 'axios';
 import {DepositCall} from '../../Services/APIs/AdminAPI';
 import {ToastContainer, toast } from 'react-toastify';
@@ -38,7 +38,7 @@ const Deposit = () => {
      .catch((error) => {
        console.error(error);
        // Handle error, e.g., show error message to user, etc.
-     });*/
+     });
    
   };
 
@@ -194,3 +194,4 @@ export default Deposit;
 
 
 
+*/
