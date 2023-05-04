@@ -8,7 +8,6 @@ exports.getAccountInfo = async (req, res) => {
         const userTableData = await UserInfo.findOne({UserName: user});
 
         const responseData = {userTableData: userTableData, accountTableData: accountTableData};
-        console.log(responseData);
         res.status(200).json(responseData);
       } catch (error) {
         console.error(error);

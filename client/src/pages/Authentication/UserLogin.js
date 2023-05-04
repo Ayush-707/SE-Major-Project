@@ -10,11 +10,6 @@ function Auth () {
     pass: ''
   });
 
-  // const [currentUser, setCurrentUser] = useState("");
-
-  // useEffect(() => {
-  //   localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  // }, [currentUser]);
 
   const [signupData, setSignupData] = useState ({
     fullName: '',
