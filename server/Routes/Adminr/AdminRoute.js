@@ -17,6 +17,8 @@ router.patch("/Admin/Approve", req.accountRequest);
 
 router.get("/Admin/Balance/:accountNumber", balanceCheck.tellBalance);
 
+router.patch("/Admin/Balance/:accountNumber", balanceCheck.updateBalance);
+
 // router.get("/Admin/Deposit",balanceCheck.tellBalance);
 // router.get("/Admin/Withdraw",balanceCheck.tellBalance);
 
