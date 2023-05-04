@@ -3,7 +3,7 @@ const router = new express.Router();
 const sendMail = require( "../../Controllers/UserFunctions/ContactController" ); 
 const newAccountRequest = require( "../../Controllers/UserFunctions/RqstAcntCntrlr" ); 
 const inAccount = require("../../Controllers/UserFunctions/InController");
-const transactController = require("../../Controllers/UserFunctions/TranactionController");
+const transactController = require("../../Controllers/UserFunctions/TransactionController");
 const bodyParser = require('body-parser');
 const path = require('path');
 
