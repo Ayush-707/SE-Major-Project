@@ -38,3 +38,24 @@ export const addEmployee = async (data) => {
 
 
 
+
+
+
+export const GetInvest = async() => {
+    
+    const url = `${BACKEND_URL}/Admin/Invest`;
+    return await commonrequest("GET", url);
+}
+
+export const InvForm = async(data) => {
+    
+    const url = `${BACKEND_URL}/Admin/InvestF`;
+    return await commonrequest("PATCH", url, data);
+}
+
+export const createAcc = async(data) => {
+
+    const url = `${BACKEND_URL}/Admin/CreateA`;
+    return await commonrequest("POST",url,data);
+}
+

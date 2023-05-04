@@ -15,4 +15,8 @@ export const InvestAccount = async(data) => {
     return await commonrequest("POST", `${BACKEND_URL}/User/InAccount`, data);
 }
 
+export const Transact = async(data) => {
+    return await commonrequest("POST", `${BACKEND_URL}/User/Transaction`, data)
+}
+
 

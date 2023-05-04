@@ -5,23 +5,52 @@ import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const Withdraw = () => {
-  const [id, setId] = useState("");
+  const [accountNumber, setaccountNumber] = useState("");
   const currentDate = new Date().toLocaleDateString();
   const [balance, setBalance] = useState(null);
   const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // perform deposit logic here
+    // perform withdraw logic here
   };
 
+  async function updateBalance(accountNumber, newBalance) {
+    try {
+      const response = await axios.patch(`http://localhost:4002/Admin/Balance/${accountNumber}`, { amount: newBalance });
+      const updatedBalance = response.data.balance;
+      console.log(`Balance updated to ${updatedBalance}`);
+      return updatedBalance;
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const handleCheckBalance = async (e) => {
-    setBalance(400);// This line to be deleted
+    
+
     e.preventDefault();
     try {
-      const response = await axios.get(`/api/balance/${id}`);
-      setBalance(response.data.balance);
+      if(String({accountNumber}["accountNumber"])==''){
+        
+        toast.error("Enter the Withdrawer's Account Number", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnHover: false,
+        });
+      }
+      else{
+        setBalance(400);// This line to be deleted
+      const response = await axios.get(`http://localhost:4002/Admin/Balance/${accountNumber}`);
+
+      //const response = await axios.get(`/Admin/Balance/${accountNumber}`);
+      console.log("response");
+      alert(response);
+      console.log("response");
+      setBalance(response.balance);
+    }
+      
     } catch (err) {
       console.error(err);
       // handle error, e.g. show an error message to the user
@@ -30,20 +59,41 @@ const Withdraw = () => {
 
   const doWithdraw = async (e) =>{
     if(balance==null){
-      alert("check balance first")
+      
+      toast.error("check balance first", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(String({amount}["amount"])==''){
-      alert("Enter the amount to be withdrawn")
+      
+      toast.error("Enter the amount to be withdrawn", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(parseInt({amount}["amount"])>parseInt(balance)){
-      alert("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance)
+      
+      toast.error("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance, {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(parseInt({amount}["amount"])<0){
-      alert("Enter a +ve amount to be withdrawn")
+      
+      toast.error("Enter a +ve amount to be withdrawn", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else{
       
-    const response = await WithdrawCall({"id":id,"amount":amount});
+    
+    const response = await WithdrawCall({"id":accountNumber,"amount":amount});
     console.log(response.data);
     if (response.status === 201 ) {
       
@@ -54,7 +104,9 @@ const Withdraw = () => {
       });
 
     } else {
-      setBalance(parseInt(balance)-parseInt({amount}["amount"]));
+      var newBalance=parseInt(balance)-parseInt({amount}["amount"]);
+      updateBalance(accountNumber, newBalance);
+      setBalance(newBalance);
       
       toast.success("Amount withdrawn Successfully", {
         autoClose: 2000,
@@ -86,15 +138,15 @@ const Withdraw = () => {
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xxxl">
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-          Withdrawer's ID
+          Withdrawer's Account Number
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="id"
+            id="withdrawersAccountNumber"
             type="text"
-            placeholder="Withdrawer's ID"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            placeholder="Account Number"
+            value={accountNumber}
+            onChange={(e) => setaccountNumber(e.target.value)}
           />
         </div>
         <div className="mb-4 flex items-center justify-center">

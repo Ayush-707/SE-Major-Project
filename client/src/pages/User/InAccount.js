@@ -11,6 +11,7 @@ function Funding() {
     phone: '',
     email: '',
     accountType:'',
+    amount:'',
     address:'',
     city: '',
     pin:'',
@@ -46,7 +47,20 @@ function Funding() {
         pauseOnHover: false,
       });
 
-    }  else if(response.status === 203) {
+    }  else if(response.status === 202)
+    {
+
+      toast.error("Invalid Amount!", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
+
+    }
+    
+    
+    
+    else if(response.status === 203) {
       toast.error("Invalid PIN Code!", {
         autoClose: 2000,
         hideProgressBar: true,
@@ -188,6 +202,11 @@ function Funding() {
             <option value="Hybrid">Hybrid</option>
 
           </select>
+
+          <label htmlFor="amount" style={styles.label}>Amount:</label>
+          <input style = {styles.input} type="number" id="amount" name="amount" placeholder="Enter Amount" 
+          value={formData.amount} onChange={handleChange} required />
+
 
           <label htmlFor="address" style={styles.label}>Address:</label>
           <input style = {styles.input} type="text" id="address" name="address" placeholder="Enter Your Address" 
