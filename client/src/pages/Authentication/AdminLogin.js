@@ -202,6 +202,14 @@ function OtpLogin() {
   return (
     <>
         <ToastContainer/>
+        <div className="flex flex-row w-full">
+        <div className="w-1/2 pr-6">
+          <div className="w-full">
+            <img src={process.env.PUBLIC_URL + '/employee.webp'} alt="" className="w-full" />
+          </div>
+        </div>
+        <div className="w-1/2">
+          <div className="bg-white rounded-lg overflow-hidden shadow-lg w-full max-w-md mx-auto mt-8">
                 <h3 class="text-xl font-bold mx-auto max-w-sm mt-5 mb-5">Add New Employee</h3>
 
                 <form class="max-w-sm mx-auto mb-3" onSubmit={add}>
@@ -244,7 +252,7 @@ function OtpLogin() {
                 </button>
             </div>
             </form>
-    <form className="max-w-sm mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
+    <form className="max-w-sm mx-auto mb-10 mt-10">
       <h2 className="text-2xl font-bold mb-4">Employee Login</h2>
       {!isEmailSubmitted && (
         <div className="mb-4">
@@ -270,7 +278,7 @@ function OtpLogin() {
           <button
           type="submit"
           onClick={handleEmailSubmit}
-          className={`mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+          className={`mt-2 bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                     ${isLoading ? "cursor-wait disabled opacity-50" : ""}`}disabled={isLoading}>
           {isLoading ? "Loading..." : "Submit"}
           
@@ -301,7 +309,7 @@ function OtpLogin() {
           <button
           type="submit"
           onClick={handleOtpSubmit}
-          className={`mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+          className={`mt-2 bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                     ${isLoading ? "cursor-wait disabled opacity-50" : ""}`}disabled={isLoading}>
           {isLoading ? "Loading..." : "Submit"}
           
@@ -309,6 +317,9 @@ function OtpLogin() {
         </div>
       )}
     </form>
+    </div>
+    </div>
+    </div>
     </>
   );
 }
