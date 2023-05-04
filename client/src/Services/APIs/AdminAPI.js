@@ -35,6 +35,10 @@ export const addEmployee = async (data) => {
     return await commonrequest("POST", url, data);
 };
 
+export const GetAccountInfoEmployee = async(data) => {
+    return await commonrequest("POST", `${BACKEND_URL}/Admin/Home`, data);
+}
+
 
 
 

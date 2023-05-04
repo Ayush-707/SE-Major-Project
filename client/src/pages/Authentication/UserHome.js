@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { GetAccountInfo } from "../../Services/APIs/UserAPI";
-import { useLocation } from "react-router-dom";
+
 
 
 
 
 const UserHomePage = () => {
-
-  // const { state } = useLocation();
-  // const { username } = state;
-
-  // const [username, setUsername] = useState("");
-
+  
   const username = JSON.parse(localStorage.getItem('currentUser'));
-
-
-  // useEffect(() => {
-  //   const item = JSON.parse(localStorage.getItem('currentUser'));
-  //   if (item) {
-  //     setUsername(item);
-  //   }
-  // }, [username]);
     
   const styles = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`,
