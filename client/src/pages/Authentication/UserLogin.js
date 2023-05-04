@@ -76,7 +76,7 @@ function Auth ({}) {
           },
         });
 
-        navigate("/User/Home");
+        navigate("/User/Home", { state: { username: loginData.userName } });
 
       } else {
         throw new Error(loginRes);
