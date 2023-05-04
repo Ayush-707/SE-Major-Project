@@ -13,6 +13,7 @@ function GlobalFilter({
   setGlobalFilter,
 }) {
   const count = preGlobalFilteredRows.length
+  
   const [value, setValue] = React.useState(globalFilter)
   const onChange = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
@@ -108,8 +109,8 @@ export function AvatarCell({ value, column, row }) {
 }
 
 function Table({ columns, data }) {
-  const navigate = useNavigate();
   // Use the state and functions returned from useTable to build your UI
+  const navigate = useNavigate();
   const {
     getTableProps,
     getTableBodyProps,
@@ -118,7 +119,7 @@ function Table({ columns, data }) {
     page, // Instead of using 'rows', we'll use page,
     // which has only the rows for the active page
 
-    // The rest of these things are super handy, too ;)
+//     // The rest of these things are super handy, too ;)
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -295,4 +296,4 @@ function Table({ columns, data }) {
   )
 }
 
-export default Table;
+ export default Table;

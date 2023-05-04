@@ -13,7 +13,7 @@ router.use(express.static(path.resolve(__dirname, 'public')));
 
 router.post("/User/Contact", sendMail.userCare);
 router.post("/User/New-Account", newAccountRequest.userNewAccountRequest);
-router.post('/', investController.createInvestment);
+router.post('/User/Investment', investController.createInvestment);
 
 
 module.exports = router;
