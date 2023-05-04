@@ -18,7 +18,7 @@ const createTransaction = async (req, res) => {
   
     try {
       // Find sender and receiver users
-      const sender = await User.findOne({ idaccountNumber: id });
+      const sender = await User.findOne({ accountNumber: id });
       const receiver = await User.findOne({ accountNumber: receiverId });
   
       // Check if sender has enough funds
