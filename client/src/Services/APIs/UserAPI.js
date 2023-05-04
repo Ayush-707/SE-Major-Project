@@ -25,3 +25,4 @@ export const Transact = async(data) => {
     return await commonrequest("POST", `${BACKEND_URL}/User/Transaction`, data)
 }
 
+

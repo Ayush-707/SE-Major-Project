@@ -5,6 +5,7 @@ const req = require("../../Controllers/Adminc/AccountController")
 const withdrawController = require("../../Controllers/Adminc/withdrawController");
 const invest =  require("../../Controllers/Adminc/InvestC");
 const balanceCheck = require("../../Controllers/AdminAndUser/BallanceController");
+const addNew = require("../../Controllers/Adminc/AddEmployee");
 
 const router = express.Router();
 
@@ -30,6 +31,10 @@ router.get("/Admin/Invest", invest.sendTable);
 router.patch("/Admin/InvestF", invest.accountForms);
 
 router.post("/Admin/CreateA", invest.createInvest);
+
+
+
+router.post("/Admin/Add", addNew.adminAdd)
 
 
 

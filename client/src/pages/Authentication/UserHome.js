@@ -7,8 +7,17 @@ import { useLocation } from "react-router-dom";
 
 const UserHomePage = () => {
 
-  const { state } = useLocation();
-  const { username } = state;
+  // const { state } = useLocation();
+  // const { username } = state;
+
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const item = JSON.parse(localStorage.getItem('currentUser'));
+    if (item) {
+      setUsername(item);
+    }
+  }, "");
     
   const styles = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/gvTIFs.webp)`,

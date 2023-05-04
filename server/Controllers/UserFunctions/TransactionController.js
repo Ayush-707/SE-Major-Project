@@ -1,4 +1,4 @@
-import User from "../../Database/Models/userAccounts";
+const User = require("../../Database/Models/userAccounts");
 
 const createTransaction = async (req, res) => {
     console.log(req.body);

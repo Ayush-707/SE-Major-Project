@@ -1,4 +1,11 @@
-import React, { useEffect, useState } from "react";
+
+  
+
+
+
+
+
+import React, { useEffect, useState,  } from "react";
 import {GetInvest, InvForm, createAcc} from "../../Services/APIs/AdminAPI";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,11 +16,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import {ToastContainer, toast } from 'react-toastify';
-import jsPDF from 'jspdf';
+
+
+
+
 
 
 
 function InvestDetail() {
+  const [openPdf, setOpenPdf] = useState(false);
+
   const [requests, setRequests] = useState([]);
  
   useEffect(() => {
@@ -110,77 +122,9 @@ function InvestDetail() {
     }
   }
   
-  function generatePDF() {
-    const doc = new jsPDF();
-    fetch('https://akm-img-a-in.tosshub.com/aajtak/images/story/201502/iit_ropar_650_022415062015.jpg?size=948:533')
-  .then(response => response.blob())
-  .then(blob => {
-    const imgUrl = URL.createObjectURL(blob);
-    const imageWidth = 46;
-    const imageHeight = 26;
-    const xPos = 10;
-    const yPos = 10;
-    const pageWidth =
-    doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
-
-    doc.addImage(imgUrl, 'PNG', xPos, yPos, imageWidth, imageHeight);
-
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text("Indian Institute of Technology, Ropar", pageWidth / 2, 16, {
-      align: "center"
-    });
   
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "normal");
-    doc.text("Rupnagar,Punjab-140001", pageWidth / 2, 22, { align: "center" });
-    doc.text("Tele:+91-1881-235101, email:cs@iitrpr.ac.in", pageWidth / 2, 28, { align: "center" });
-    doc.setLineWidth(0.5);
-    doc.line(10, 38, pageWidth - 10, 38);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.text("ACHIEVEMENTS LIST", pageWidth / 2, 45, {
-      align: "center"
-    });
-    doc.setLineWidth(0.2);
-    doc.line(85, 46, pageWidth - 85, 46);
-    doc.setFont("helvetica", "bold");
-    doc.text("Student Name", 20, 60);
-    doc.text(":", 70, 60);
-    doc.setFont("helvetica", "normal");
-    doc.text("Vishwas Rathi", 72, 60);
-    doc.setFont("helvetica", "bold");
-    doc.text("Student Email", 20, 65);
-    doc.text(": ", 70, 65);
-    //doc.setFont("helvetica", "normal");
-    //doc.text(email, 72, 65);
-    doc.setFont("helvetica", "bold");
-    doc.text("Student Programme", 20, 70);
-    doc.text(": ", 70, 70);
-    doc.setFont("helvetica", "normal");
-    doc.text("PhD, CSE", 72, 70);
-    
-    const columns = [['Name', 'Phone', 'Email', 'Address', 'Type', 'Amount', 'Status']];
-   // const filteredData = data.filter(item => item.student_name === email);
-   const rows = [];
-//const rows = filteredData.map(user=>[user.achievements,user.date,user.shared_with,user.status]);
-    doc.autoTable({
-      head: columns,
-      body: rows,
-      startY: 80,
-    });
-    doc.save('my-document.pdf');
-
-    // add image to PDF here
-  });
-  }
-
-
-
+ 
   
-
-
-
 
   return (
 
@@ -188,8 +132,8 @@ function InvestDetail() {
 
       
   <ToastContainer />
-  
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full" onClick={generatePDF}>Generate PDF</button>
+
+ 
     <TableContainer component={Paper} sx={{ width: '99.7%', marginLeft: '2px', marginRight: '2px', overflowX: 'auto' }}>
       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
       <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'purple' }}>
@@ -233,6 +177,9 @@ function InvestDetail() {
     </TableBody>
   </Table>
 </TableContainer>
+
+
+
 </>
 )
 }

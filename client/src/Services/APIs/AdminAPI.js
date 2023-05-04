@@ -29,6 +29,18 @@ export const createNew = async(data) => {
     return await commonrequest("POST",url,data);
 }
 
+export const addEmployee = async (data) => {
+    const url = `${BACKEND_URL}/Admin/Add`;
+    
+    return await commonrequest("POST", url, data);
+};
+
+
+
+
+
+
+
 export const GetInvest = async() => {
     
     const url = `${BACKEND_URL}/Admin/Invest`;

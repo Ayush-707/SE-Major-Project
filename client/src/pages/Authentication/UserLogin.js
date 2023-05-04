@@ -10,6 +10,8 @@ function Auth () {
     pass: ''
   });
 
+  const [currentUser, setCurrentUser] = useState("");
+
   const [signupData, setSignupData] = useState ({
     fullName: '',
     newUserName: '',
@@ -76,7 +78,12 @@ function Auth () {
           },
         });
 
-        navigate("/User/Home", { state: { username: loginData.userName } });
+        // navigate("/User/Home", { state: { username: loginData.userName } });
+        avigate("/User/Home");
+        setCurrentUser(loginData.userName);
+        useEffect(() => {
+          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        }, [currentUser]);
 
       } else {
         throw new Error(loginRes);
