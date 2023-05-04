@@ -51,7 +51,7 @@ const Deposit = () => {
         alert("Enter the Depositer's id")
       }
       else{
-      const response = await axios.get(`/Admin/Balance/${id}`);
+      const response = await axios.get(`http://localhost:4002/Admin/Balance/${id}`);
       setBalance(response.balance);
     }
       

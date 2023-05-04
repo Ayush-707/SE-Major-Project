@@ -19,7 +19,7 @@ const Withdraw = () => {
 
   async function updateBalance(accountNumber, newBalance) {
     try {
-      const response = await axios.patch(`/Admin/Balance/${accountNumber}`, { amount: newBalance });
+      const response = await axios.patch(`http://localhost:4002/Admin/Balance/${accountNumber}`, { amount: newBalance });
       const updatedBalance = response.data.balance;
       console.log(`Balance updated to ${updatedBalance}`);
       return updatedBalance;
@@ -28,15 +28,26 @@ const Withdraw = () => {
     }
   }
   const handleCheckBalance = async (e) => {
-    setBalance(400);// This line to be deleted
+    
 
     e.preventDefault();
     try {
       if(String({accountNumber}["accountNumber"])==''){
-        alert("Enter the Withdrawer's Account Number")
+        
+        toast.error("Enter the Withdrawer's Account Number", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          pauseOnHover: false,
+        });
       }
       else{
-      const response = await axios.get(`/Admin/Balance/${accountNumber}`);
+        setBalance(400);// This line to be deleted
+      const response = await axios.get(`http://localhost:4002/Admin/Balance/${accountNumber}`);
+
+      //const response = await axios.get(`/Admin/Balance/${accountNumber}`);
+      console.log("response");
+      alert(response);
+      console.log("response");
       setBalance(response.balance);
     }
       
@@ -48,16 +59,36 @@ const Withdraw = () => {
 
   const doWithdraw = async (e) =>{
     if(balance==null){
-      alert("check balance first")
+      
+      toast.error("check balance first", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(String({amount}["amount"])==''){
-      alert("Enter the amount to be withdrawn")
+      
+      toast.error("Enter the amount to be withdrawn", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(parseInt({amount}["amount"])>parseInt(balance)){
-      alert("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance)
+      
+      toast.error("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance, {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else if(parseInt({amount}["amount"])<0){
-      alert("Enter a +ve amount to be withdrawn")
+      
+      toast.error("Enter a +ve amount to be withdrawn", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      });
     }
     else{
       
