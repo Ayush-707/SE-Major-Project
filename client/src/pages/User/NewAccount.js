@@ -109,7 +109,7 @@ function Page4() {
       display: 'flex',
       flexDirection: 'column',
      
-      maxWidth: '800px',
+      maxWidth: '700px',
       margin: '20px auto',
       padding: '20px',
       border: '1px solid #ccc',

@@ -9,11 +9,11 @@ import Landing from './pages/Authentication/LandingPage'
 import Log from './pages/Authentication/AdminLogin'
 import AdminHomePage from './pages/Authentication/AdminHome'
 import Deposit from './pages/Admin/Deposit'
-import Investment from './pages/User/Investment'
 import Req from './pages/Admin/PendingReq'
 import Display from './pages/User/display'
 import History from './pages/Admin/History'
 import Whistory from './pages/Admin/wHistory'
+import InAccount from './pages/User/InAccount'
 
 
 
@@ -43,7 +43,7 @@ function App() {
             <Route path = '/User/New-Account' element = {<NewAccount/>} />
             <Route path = '/User/Transaction' element = {<Transaction/>} />
             <Route path = '/User/display' element = {<Display/>} />
-            <Route path = '/User/Investment' element = {<Investment/>} />
+            <Route path = '/User/InAccount' element = {<InAccount/>} />
             
             
            
