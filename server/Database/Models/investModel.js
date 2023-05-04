@@ -22,12 +22,15 @@ const investmentSchema = new mongoose.Schema({
     required: true
   }
 },
-{
-  collection: "invest" 
-}
+
 
 );
 
 const Investment = mongoose.model('Investment', investmentSchema);
 
 module.exports = Investment;
+/*
+{
+  collection: "invest" 
+}
+ */

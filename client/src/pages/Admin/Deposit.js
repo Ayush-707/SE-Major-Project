@@ -43,7 +43,8 @@ const Deposit = () => {
   };
 
   const handleCheckBalance = async (e) => {
-    setBalance(400);// This line to be deleted
+  //  setBalance(400);// This line to be deleted
+
     e.preventDefault();
     try {
       const response = await axios.get(`/api/balance/${id}`);

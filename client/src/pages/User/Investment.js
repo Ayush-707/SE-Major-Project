@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Investment} from '../../Services/APIs/UserAPI';
 import {ToastContainer, toast } from 'react-toastify';
 const InvestmentForm = () => {
+ // const { mockInvestment } = props;
   // State variables to store form inputs
 
   const [investData, setInvestData] = useState({
@@ -77,34 +78,7 @@ const InvestmentForm = () => {
   };
  
   
- /* const handleSubmit = async (event) => {
-    event.preventDefault();
-  
-    // Do something with form data, e.g. submit to a backend API
-    const investmentData = {
-      userID: userID,
-      phoneNo: phoneNo,
-      fundType: fundType,
-      investmentAmount: investmentAmount,
-      duration: duration
-    };
-
-    try {
-      // Call the backend API to submit the form data
-      await Investment.createInvestment(investmentData);
-      console.log('Investment data submitted:', investmentData);
-      // Reset form inputs after successful submission
-      setUserID('');
-      setPhoneNo('');
-      setFundType('');
-      setInvestmentAmount('');
-      setDuration('');
-    } catch (error) {
-      console.error('Failed to submit investment data:', error);
-    }
-   
-  };*/
-  
+ 
   return (
 
     <>
@@ -181,7 +155,7 @@ const InvestmentForm = () => {
       </div>
       <button
         type="submit"
-        onClick={handleSubmit}
+       // onClick={handleSubmit}
         className="w-full bg-blue-500 text-white py-3 rounded-md font-medium hover:bg-blue-600 transition duration-200"
       >
         Submit
@@ -225,3 +199,34 @@ export default InvestmentForm;
     } catch (error) {
       console.error('Failed to submit form data:', error);
     } */
+
+
+
+    /* const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    // Do something with form data, e.g. submit to a backend API
+    const investmentData = {
+      userID: userID,
+      phoneNo: phoneNo,
+      fundType: fundType,
+      investmentAmount: investmentAmount,
+      duration: duration
+    };
+
+    try {
+      // Call the backend API to submit the form data
+      await Investment.createInvestment(investmentData);
+      console.log('Investment data submitted:', investmentData);
+      // Reset form inputs after successful submission
+      setUserID('');
+      setPhoneNo('');
+      setFundType('');
+      setInvestmentAmount('');
+      setDuration('');
+    } catch (error) {
+      console.error('Failed to submit investment data:', error);
+    }
+   
+  };*/
+  

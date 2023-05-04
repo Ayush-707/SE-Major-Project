@@ -3,15 +3,15 @@ const UserDetails = require("../../Database/Models/UserDetails");
 
  
 
-// Handle form submission
-const createInvestment = async (req, res) => {
+// Handle form submission, const
+ exports.createInvestment = async (req, res) => {
   try {
     // Extract form data from request body
     const { userID, phoneNo, fundType, investmentAmount, duration } = req.body;
 
-  /*  if (!phoneNo || typeof phoneNo !== "string" || phoneNo.length !== 10 || !/^[0-9]+$/.test(phone)) {
+  if (!phoneNo || typeof phoneNo !== "string" || phoneNo.length !== 10 || !/^[0-9]+$/.test(phoneNo)) {
       return res.status(201).json({ message: "Invalid phone number" });
-    }*/
+    }
      // Check if email exists in UserDetails collection
      const userDetails = await UserDetails.findOne({ Email:email });
      if (!userDetails) {
@@ -19,7 +19,8 @@ const createInvestment = async (req, res) => {
      }
 
     // Create a new investment record in the database
-    const investForms= await Investments.create({
+   // const investForms= await Investments.create({
+      const investForms= new Investments({
       userID,
       phoneNo,
       fundType,
@@ -36,4 +37,4 @@ const createInvestment = async (req, res) => {
   }
 };
 
-module.exports = { createInvestment };
+//module.exports = { createInvestment };
