@@ -16,7 +16,7 @@ const withdrawSchema = new mongoose.Schema({
   }
 },
 {
-  collection: "deposit",
+  collection: "withdraw",
 }
 
 );
