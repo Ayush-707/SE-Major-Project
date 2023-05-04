@@ -16,6 +16,7 @@ export const InvestAccount = async(data) => {
 }
 
 export const GetAccountInfo = async(data) => {
+    console.log("My2 My2 My2 My2 My2 My2 My2 My2 My2 My2 My2 My2 ")
     return await commonrequest("POST", `${BACKEND_URL}/User/Home`, data);
 }
 
