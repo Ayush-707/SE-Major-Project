@@ -1,4 +1,5 @@
 const User = require("../../Database/Models/userAccounts");
+const Transaction = require("../../Database/Models/TransactRecords");
 
 const createTransaction = async (req, res) => {
     console.log(req.body);
