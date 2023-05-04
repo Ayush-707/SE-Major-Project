@@ -10,7 +10,7 @@ function Page4() {
     name: '',
     phone: '',
     dob: '',
-    email: '',
+    userName: '',
     accountType:'',
     street:'',
     city: '',
@@ -63,7 +63,7 @@ function Page4() {
         
       });
     } else if (response.status === 204) {
-      toast.error("Web Account is needed for the Entered Email ID to request for a New Bank Account!", {
+      toast.error("Username does not exists!", {
         autoClose: 2000,
         hideProgressBar: true,
         pauseOnHover: false,
@@ -181,8 +181,8 @@ function Page4() {
           <label htmlFor="dob" style={styles.label}>Date of Birth:</label>
           <input style = {styles.input} type="date" id="dob" name="dob" value={formData.dob} onChange={handleChange} required />
 
-          <label htmlFor="email" style={styles.label}>Email:</label>
-          <input style = {styles.input} type="email" id="email" name="email" value={formData.email} onChange={handleChange} required/>
+          <label htmlFor="userName" style={styles.label}>User Name:</label>
+          <input style = {styles.input} type="text" id="userName" name="userName" value={formData.userName} onChange={handleChange} required/>
 
           <label htmlFor="accountType" style={styles.label}>Account Type:</label>
           <select style={styles.select} id="accountType" name="accountType" value={formData.accountType} onChange={handleChange} required >

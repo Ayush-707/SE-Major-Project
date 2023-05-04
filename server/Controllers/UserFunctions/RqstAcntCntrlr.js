@@ -5,7 +5,7 @@ exports.userNewAccountRequest = async (req, res) => {
   try {
     console.log(req.body);
     // Validate request body fields
-    const { name, phone, dob, email, accountType, street, city, pin, state } = req.body;
+    const { name, phone, dob, userName, accountType, street, city, pin, state } = req.body;
    
     if (!phone || typeof phone !== "string" || phone.length !== 10 || !/^[0-9]+$/.test(phone)) {
       return res.status(201).json({ message: "Invalid phone number" });
@@ -20,10 +20,10 @@ exports.userNewAccountRequest = async (req, res) => {
       return res.status(203).json({ message: "Invalid PIN Code" });
     }
    
-    // Check if email exists in UserDetails collection
-    const userDetails = await UserDetails.findOne({ Email:email });
+    // Check if username exists in UserDetails collection
+    const userDetails = await UserDetails.findOne({ UserName:userName });
     if (!userDetails) {
-      return res.status(204).json({ message: "Signup Needed for Entered Email" });
+      return res.status(204).json({ message: "User Name does not exists" });
     }
 
     // Create new account request
@@ -31,7 +31,7 @@ exports.userNewAccountRequest = async (req, res) => {
       name,
       phone,
       dob,
-      email,
+      userName,
       accountType,
       address: `${street}, ${city}, ${pin}, ${state}`,
       status: "Pending", // set initial status to "pending"

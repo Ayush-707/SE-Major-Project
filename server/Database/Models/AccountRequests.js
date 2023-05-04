@@ -14,7 +14,7 @@ const accountRequestSchema = new Schema({
     type: String,
     default: false,
   },
-  email: {
+  userName: {
     type: String,
     required: true,
   },
