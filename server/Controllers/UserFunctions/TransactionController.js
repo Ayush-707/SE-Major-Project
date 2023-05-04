@@ -28,10 +28,20 @@ const createTransaction = async (req, res) => {
       // Update sender and receiver balances
       sender.balance = (Number(sender.balance) - parsedAmount).toString();
       receiver.balance = (Number(receiver.balance) + parsedAmount).toString();
+        
+    const transaction = new Transaction({
+
+      sender: sender.userName,
+      receiver: receiver.userName,
+      senderId: sender._id,
+      receiverId: receiver._id,
+      amount: parsedAmount,
+    });
   
       // Save changes to the database
       await sender.save();
       await receiver.save();
+      await transaction.save();
   
       // Return success response
       return res.status(200).json({ message: "Transaction completed successfully!" });
