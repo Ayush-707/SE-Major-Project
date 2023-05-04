@@ -15,6 +15,7 @@ import History from './pages/Admin/History'
 import Whistory from './pages/Admin/wHistory'
 import InAccount from './pages/User/InAccount'
 import FirstPage from './pages/Admin/FirstPage'
+import InvestDetail from './pages/Admin/InvestDetail'
 //import AddEmployee from './pages/Admin/AddEmployee'
 
 
@@ -60,6 +61,7 @@ function App() {
             <Route path = '/Admin/History' element = {<History/>} />
             <Route path = '/Admin/wHistory' element = {<Whistory/>} />
             <Route path = '/Admin/FirstPage' element = {<FirstPage/>} />
+            <Route path = '/Admin/InvestDetail' element = {<InvestDetail/>} />
            
 
 

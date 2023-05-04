@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const depositSchema = new mongoose.Schema({
-  id: {
+  accountNumber: {
     type: String,
     required: true
   },
@@ -14,9 +14,6 @@ const depositSchema = new mongoose.Schema({
     required: true
   }
 }, 
-{
-  collection: "deposit" // Fix: Added closing parenthesis here
-}
 );
 
 const Deposit = mongoose.model("Deposit", depositSchema);

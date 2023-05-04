@@ -3,7 +3,8 @@ const express = require("express");
 const depositController = require("../../Controllers/Adminc/depositController");
 const req = require("../../Controllers/Adminc/AccountController")
 const withdrawController = require("../../Controllers/Adminc/withdrawController");
-const balanceCheck=require("../../Controllers/AdminAndUser/BallanceController");
+const invest =  require("../../Controllers/Adminc/InvestC");
+const balanceCheck = require("../../Controllers/AdminAndUser/BallanceController");
 
 const router = express.Router();
 
@@ -23,5 +24,13 @@ router.patch("/Admin/Balance/:accountNumber", balanceCheck.updateBalance);
 // router.get("/Admin/Withdraw",balanceCheck.tellBalance);
 
 router.post("/Admin/Create", req.createAccount);
+
+router.get("/Admin/Invest", invest.sendTable);
+
+router.patch("/Admin/InvestF", invest.accountForms);
+
+router.post("/Admin/CreateA", invest.createInvest);
+
+
 
 module.exports = router;

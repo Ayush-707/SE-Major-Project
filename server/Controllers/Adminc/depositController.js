@@ -1,12 +1,18 @@
 // controllers/depositController.js
 const Deposit = require("../../Database/Models/depositModel");
+//const UserDetails = require("../../Database/Models/UserDetails");
 
-const depositMoney = async (req, res) => {
+exports.depositMoney = async (req, res) => {
   try {
-    const { id, amount } = req.body;
+    console.log(req.body);
+    const { accountNumber, date, amount } = req.body;
 
-    const deposit = new deposit({
-      id,
+     // Check if email exists in UserDetails collection
+  
+
+    const deposit = new Deposit({
+      accountNumber,
+      date,
       amount
     });
 
@@ -14,10 +20,11 @@ const depositMoney = async (req, res) => {
 
     res.status(201).json({ success: true, message: "deposit Successfully" });
   } catch (error) {
+    console.error(error);
     res.status(555).json({ success: false, error: error.message });//Server error responses
   }
 };
 
-module.exports = {
+/*module.exports = {
     depositMoney
-};
+};*/
