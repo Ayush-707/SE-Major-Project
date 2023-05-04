@@ -122,6 +122,7 @@ function OtpLogin() {
             boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
           },
         });
+        localStorage.setItem('currentUser', JSON.stringify(loginData.myEmail));
         navigate("/Admin/Home");
 
 

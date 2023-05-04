@@ -16,7 +16,7 @@ router.use(express.static(path.resolve(__dirname, 'public')));
 router.post("/User/Contact", sendMail.userCare);
 router.post("/User/New-Account", newAccountRequest.userNewAccountRequest);
 router.post('/User/InAccount', inAccount.investAccount );
-router.post('/User/Home', accountInfo.getAccountInfo)
+router.post('/User/Home', accountInfo.getAccountInfo);
 router.post('/User/Transaction', transactController.createTransaction);
 
 

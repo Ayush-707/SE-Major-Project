@@ -7,7 +7,7 @@ export const WithdrawCall = async(data) => {
     return await commonrequest("POST", `${BACKEND_URL}/Admin/Withdraw`, data)
 }
 
-export const DepositCall = async(data) => {
+export const Deposit = async(data) => {
     return await commonrequest("POST", `${BACKEND_URL}/Admin/Deposit`, data)
 }
 
@@ -34,6 +34,10 @@ export const addEmployee = async (data) => {
     
     return await commonrequest("POST", url, data);
 };
+
+export const GetAccountInfoEmployee = async(data) => {
+    return await commonrequest("POST", `${BACKEND_URL}/Admin/Home`, data);
+}
 
 
 
