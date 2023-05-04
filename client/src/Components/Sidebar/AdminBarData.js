@@ -49,6 +49,13 @@ export const AdminOptions = [
     },
 
     {
+        title: "Investment Accounts",
+        path: '/Admin/InvestDetail',
+        icon: <i class="fa-solid fa-circle-pause"></i>,
+        cName: 'nav-text'
+    },
+
+    {
         title: "Login",
         path: '/Admin/Auth',
         icon: <FaIcons.FaLockOpen/>,

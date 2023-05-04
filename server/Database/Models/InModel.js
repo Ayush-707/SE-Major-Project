@@ -19,7 +19,17 @@ const accountInvestSchema = new Schema({
     type: String,
     required: true,
   },
+
+  amount: {
+    type: String,
+    required: true,
+  },
+
   address: {
+    type: String,
+    required: true,
+  },
+  status: {
     type: String,
     required: true,
   },

@@ -124,7 +124,7 @@ function PendingReq() {
           <TableRow>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>PHONE</TableCell>
-            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>EMAIL</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '10%', textAlign: 'center' }}>USERNAME</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>DOB</TableCell>
             <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '20px', textAlign: 'center' }}>TYPE</TableCell>
@@ -139,7 +139,7 @@ function PendingReq() {
             <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-200" : ""}>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.name}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.phone}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.email}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.userName}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '17px'}}>{request.address}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.dob}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana'}}>{request.accountType}</TableCell>
