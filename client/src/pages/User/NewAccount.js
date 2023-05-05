@@ -34,9 +34,7 @@ function Page4() {
 
 
     console.log(formData);
-    // console.log(1453);
-    // add logic for submitting form data
-
+   
     const response = await RequestNewAccount(formData);
     console.log(response.body);
     if (response.status === 201 ) {
@@ -96,14 +94,16 @@ function Page4() {
       
     }
 
-    // setIsLoading(false);
-
   };
 
 
 
 
   const styles = {
+    body: {
+      backgroundImage: `url(${process.env.PUBLIC_URL}/b.png)`,
+      height: "auto",
+    },
     form: {
       
       display: 'flex',
@@ -114,7 +114,7 @@ function Page4() {
       padding: '20px',
       border: '1px solid #ccc',
       borderRadius: '5px',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#e2e8f0',
       boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)',
     },
     label: {
@@ -163,18 +163,22 @@ function Page4() {
     hover: {
       backgroundColor: '#1D4ED8',
     },
-    toast:{
-      padding: '10px 20px',
-      width:"200px",
-      position:"absolute"
-    }
+    
   };
+
+  const styles2 = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/b.png)`,
+      height: "auto",
+  }
   
 
 
   return (
   <>
-    <ToastContainer style={styles.toast} />
+ 
+    <ToastContainer />
+    <div style = {styles2}>
+      <div>
   
         <form style={styles.form} onSubmit={handleSubmit}>
           <label htmlFor="name" style={styles.label}>Name:</label>
@@ -210,7 +214,8 @@ function Page4() {
           
           <button style = {styles.button} className="hover:bg-blue-700" type="submit">Submit</button>
         </form> 
-
+        </div>
+    </div>
     </>
   )
 }

@@ -129,24 +129,30 @@ function PendingReq() {
                                     <TableContainer 
                                     component={Paper} 
                                     sx={{ 
-                                      width: '99.7%', 
-                                      marginLeft: '2px', 
-                                      marginRight: '2px', 
+                                      width: '85%', 
+                                      marginLeft: '140px', 
+                                      marginRight: '0px', 
                                       overflowX: 'auto',
-                                      borderRadius: '8px' // add a border radius value here
+                                      borderRadius: '10px', // add a border radius value here
+                                      boxShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.5)'
                                     }}
                                       >
                                       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
-                        <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'purple' }}>
-                            <TableRow>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>PHONE</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>USERNAME</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>DOB</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>TYPE</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>STATUS</TableCell>
-                              <TableCell sx={{ color: 'white', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>ACTION</TableCell>
+                                      <TableHead sx={{ 
+                                        borderBottom: '2px solid white', 
+                                        borderTop: '1px solid', 
+                                        backgroundColor: 'purple',
+                                        boxShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.5)'
+                                      }}>     
+                                <TableRow>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', textAlign: 'center' }}>PHONE</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '10%', textAlign: 'center' }}>USERNAME</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', textAlign: 'center' }}>DOB</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', textAlign: 'center' }}>TYPE</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', textAlign: 'center' }}>STATUS</TableCell>
+                              <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', textAlign: 'center' }}>ACTION</TableCell>
 
                             </TableRow>
                         </TableHead>
@@ -154,14 +160,14 @@ function PendingReq() {
                           <TableBody>
                             {requests.map((request, index) => (
                               <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-200" : ""}>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.name}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.phone}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.userName}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.address}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.dob}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.accountType}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.status}</TableCell>
-                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.name}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.phone}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.userName}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.address}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.dob}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.accountType}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>{request.status}</TableCell>
+                                <TableCell sx = {{textAlign: 'center', fontFamily: 'Verdana', fontSize: '16px'}}>
                               {request.status === 'Pending' ? 
                                 <>
                                   <Button variant="contained" color="primary" onClick={() => handleApprove(request._id)}>Approve</Button>
@@ -182,7 +188,6 @@ function PendingReq() {
 }
 
 export default PendingReq;
-
 
 
 

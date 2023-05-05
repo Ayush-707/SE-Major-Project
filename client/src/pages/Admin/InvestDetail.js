@@ -1,7 +1,5 @@
-
-
 import React, { useEffect, useState,  } from "react";
-import {GetInvest, InvForm, createAcc} from "../../Services/APIs/AdminAPI";
+import {GetInvest} from "../../Services/APIs/AdminAPI";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,14 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import {ToastContainer, toast } from 'react-toastify';
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-
-
-
-
-
 
 
 function InvestDetail() {
@@ -33,92 +26,7 @@ function InvestDetail() {
     fetchRequests();
   },[]);
 
-  const handleApprove = async (id) => {
-
-    const obj1 = {
-      ID: id,
-      Action: true
-    }
-    const res = await InvForm(obj1);
-    
-    if (res.status === 200) {
-      const updatedRequests = requests.map(req => {
-        if (req._id === id) {
-          toast.success("Request Approved!", {
-            autoClose: 1000,
-            hideProgressBar: false,
-            pauseOnHover: false,
-            style: {
-              background: "#6ACF6A",
-              color: "#fff",
-              borderRadius: "8px",
-              fontWeight: "bold",
-              border: "none",
-              boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-            },
-          });
-
-          createInvest(obj1);
-
-          
-          return { ...req, status: "Approved" }
-        } else {
-          return req;
-        }
-      });
-      setRequests(updatedRequests);
-    }
-  }
-  const createInvest = async (obj) => {
-    
-    const serverRes = await createAcc(obj);
-    console.log(serverRes.data);
-
-    if (serverRes.status === 201) {
-      toast.success("New Account Created!", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-        style: {
-          background: "#6ACF6A",
-          color: "#fff",
-          borderRadius: "8px",
-          fontWeight: "bold",
-          border: "none",
-          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-        },
-      });
-    } else {
-      toast.error("Error While Creating New Account")
-    }
-
-  }
-  const handleReject = async (id) => {
-
-    const obj2 = {
-      ID: id,
-      Action: false
-    }
-    const res = await InvForm(obj2);
-    
-    if (res.status === 200) {
-      const updatedRequests = requests.map(req => {
-        if (req._id === id) {
-          toast.error("Request Rejected", {
-            autoClose: 2000,
-            hideProgressBar: true,
-            pauseOnHover: false,
-          });
-          
-          return { ...req, status: "Rejected" }
-        } else {
-          return req;
-        }
-      });
-      setRequests(updatedRequests);
-    }
-  }
-
+  
   const generatePdf = () => {
     const doc = new jsPDF('p', 'pt', 'letter');
     const tableRows = [];
@@ -150,31 +58,13 @@ function InvestDetail() {
   
   
   
-  /*
-  const generatePdf = () => {
-    const doc = new jsPDF();
-    const tableRows = [];
-    const headers = ['Name', 'Phone', 'Email', 'Address', 'Type', 'Amount'];
-    requests.forEach(request => {
-      const row = [request.name, request.phone, request.email, request.address, request.type, request.amount];
-      tableRows.push(row);
-    });
-    doc.autoTable({
-      head: [headers],
-      body: tableRows,
-      tableWidth: 'wrap',
-    });
-    doc.save('investments.pdf');
-  }
-  */
-  
 
   return (
 
   <>
 
       
-  <ToastContainer />
+
 
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 
@@ -184,26 +74,32 @@ function InvestDetail() {
 </div>
 <br></br>
 
-          <TableContainer 
-          component={Paper} 
-          sx={{ 
-            width: '95%', 
-            marginLeft: '2px', 
-            marginRight: '2px', 
-            overflowX: 'auto',
-            borderRadius: '8px' // add a border radius value here
-          }}
-            >
+                                <TableContainer 
+                                    component={Paper} 
+                                    sx={{ 
+                                      width: '75%', 
+                                      marginLeft: '190px', 
+                                      marginRight: '0px', 
+                                      overflowX: 'auto',
+                                      borderRadius: '10px', // add a border radius value here
+                                      boxShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.5)'
+                                    }}
+                                >
       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
-      <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'yellow' }}>
+      <TableHead sx={{ 
+        borderBottom: '2px solid white', 
+        borderTop: '1px solid', 
+        backgroundColor: 'purple',
+        boxShadow: '0 0 20px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.5)'
+      }}>
           <TableRow>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>PHONE</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>EMAIL</TableCell>
-            <TableCell sx={{ color: 'blacke', fontFamily: 'Georgia', fontSize: '18px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>NAME</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>PHONE</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>EMAIL</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>ADDRESS</TableCell>
            
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>TYPE</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Amount</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>TYPE</TableCell>
+            <TableCell sx={{ color: 'white', fontFamily: 'Bahnschrift SemiBold', fontSize: '18px', width: '', textAlign: 'center' }}>Amount</TableCell>
            
 
           </TableRow>
@@ -211,14 +107,14 @@ function InvestDetail() {
 
         <TableBody>
           {requests.map((request, index) => (
-            <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.name}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.phone}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.email}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.address}</TableCell>
+            <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-300" : ""}>
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.name}</TableCell>
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.phone}</TableCell>
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.email}</TableCell>
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.address}</TableCell>
               
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.accountType}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.amount}
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.accountType}</TableCell>
+              <TableCell sx = {{textAlign: 'center',fontSize: '14px', fontFamily: 'Verdana'}}>{request.amount}
             
           
           </TableCell>

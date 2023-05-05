@@ -33,15 +33,3 @@ export const accA = async() => {
     const url = `${BACKEND_URL}/User/UserA`;
     return await commonrequest("GET", url);
 }
-
-export const accB= async(data) => {
-    
-    const url = `${BACKEND_URL}/User/UserB`;
-    return await commonrequest("PATCH", url, data);
-}
-
-export const accC = async(data) => {
-
-    const url = `${BACKEND_URL}/User/UserC`;
-    return await commonrequest("POST",url,data);
-}

@@ -51,17 +51,6 @@ export const GetInvest = async() => {
     return await commonrequest("GET", url);
 }
 
-export const InvForm = async(data) => {
-    
-    const url = `${BACKEND_URL}/Admin/InvestF`;
-    return await commonrequest("PATCH", url, data);
-}
-
-export const createAcc = async(data) => {
-
-    const url = `${BACKEND_URL}/Admin/CreateA`;
-    return await commonrequest("POST",url,data);
-}
 
 
 export const DataA = async() => {
