@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import {Transact} from '../../Services/APIs/UserAPI';
 
 const Transaction = () => {
+  console.log('hello')
+  
   const [id, setId] = useState("");
   const [receiverId, setReceiverId] = useState("");
   const currentDate = new Date().toLocaleDateString();
@@ -14,22 +16,24 @@ const Transaction = () => {
   const validateInputs = () => {
     if (!id || !receiverId || !amount) {
       setError("Please fill out all fields");
-      return false;
-    }
-    if (isNaN(amount) || amount <= 0) {
+      
+    } else if (isNaN(amount) || amount <= 0) {
       setError("Please enter a valid amount");
-      return false;
+      
+    } else {
+      setConfirming(true);
     }
-    return true;
+    
+    
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validateInputs()) {
-      return;
-    }
-    setConfirming(true);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (!validateInputs()) {
+  //     return;
+  //   }
+  //   setConfirming(true);
+  // };
 
   
   const handleConfirm = async () => {
@@ -40,14 +44,22 @@ const Transaction = () => {
         amount
       }
         const response = await Transact(transactionData);
+        console.log('status = ',response.status)
       // show success message to user
-      alert('Transaction completed successfully!');
-      // redirect to transaction history page
-      setTimeout(() => {
-        navigate("/Admin/Transact")
-      }, 1000) 
+      if(response.status===269){
+        setError('Insufficient funds');
+       // return false;
+      } else if ( response.status === 200) {
+        alert('Transaction completed successfully!');
+        // redirect to transaction history page
+        setTimeout(() => {
+          navigate("/User/display")
+        }, 1000) 
+      }
+      
     } catch (error) {
       setError(error.message);
+      console.log(error)
     }
   };
   
@@ -105,7 +117,7 @@ const Transaction = () => {
         </div>
       ) : (
         <form
-          onSubmit={handleSubmit}
+          
           className=" bg-gray-100 shadow-md w-2/3 rounded px-8 pt-6 pb-8 mb-4"
         >
           <div className="mb-4">
@@ -166,6 +178,7 @@ const Transaction = () => {
             <button
               className="bg-blue-500 w-96 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
+              onClick={validateInputs}
             >
               Submit
             </button>
