@@ -163,6 +163,10 @@ function Page4() {
     hover: {
       backgroundColor: '#1D4ED8',
     },
+    toast:{
+      width:"50px",
+      position:"absolute"
+    }
     
   };
 
@@ -176,7 +180,7 @@ function Page4() {
   return (
   <>
  
-    <ToastContainer />
+    <ToastContainer style = {styles.toast} />
     <div style = {styles2}>
       <div>
   

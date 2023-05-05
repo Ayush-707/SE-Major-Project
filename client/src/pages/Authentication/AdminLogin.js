@@ -42,11 +42,12 @@ function OtpLogin() {
     const response = await  adminLogin(loginData)
     if (response.status === 201) {
       //setIsLoading(true);
-      toast.error('Email Does Not Exists!', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
+      alert("Email Does Not Exists!")
+      // toast.error('Email Does Not Exists!', {
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   pauseOnHover: false,
+      // });
       setIsLoading(false);
     } else  {
       //setIsLoading(true);
@@ -57,19 +58,20 @@ function OtpLogin() {
 
      
 
-      toast.success('OTP sent! Please Check your Email', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-        style: {
-          background: "#4BB543",
-          color: "#fff",
-          borderRadius: "8px",
-          fontWeight: "bold",
-          border: "none",
-          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-        },
-      });
+      alert("OTP sent! Please Check your Email");
+      // toast.success('OTP sent! Please Check your Email', {
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   pauseOnHover: false,
+      //   style: {
+      //     background: "#4BB543",
+      //     color: "#fff",
+      //     borderRadius: "8px",
+      //     fontWeight: "bold",
+      //     border: "none",
+      //     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+      //   },
+      // });
 
       
       
@@ -103,35 +105,38 @@ function OtpLogin() {
       const status = response_2.status
   
       if (status ===201) {
-        toast.error('Invalid OTP!', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+        alert("Invalid OTP!");
+        // toast.error('Invalid OTP!', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        // });
       } else if (status ===200) {
-        toast.success('Login Successful!', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-          style: {
-            background: "#4BB543",
-            color: "#fff",
-            borderRadius: "8px",
-            fontWeight: "bold",
-            border: "none",
-            boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-          },
-        });
+        alert("Login Successful!");
+        // toast.success('Login Successful!', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        //   style: {
+        //     background: "#4BB543",
+        //     color: "#fff",
+        //     borderRadius: "8px",
+        //     fontWeight: "bold",
+        //     border: "none",
+        //     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        //   },
+        // });
         localStorage.setItem('currentUser', JSON.stringify(loginData.myEmail));
         navigate("/Admin/Home");
 
 
       } else {
-        toast.error('Error Encountered', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+        alert("Error Encountered");
+        // toast.error('Error Encountered', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        // });
       }
     } catch (error) {
       console.log(error)
@@ -146,12 +151,12 @@ function OtpLogin() {
     e.preventDefault();
 
     if (addData.password !== masterPassword) {
-
-      toast.error('Incorrect Master Password!', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
+      alert("Incorrect Master Password!");
+      // toast.error('Incorrect Master Password!', {
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   pauseOnHover: false,
+      // });
     } else {
 
       try {
@@ -159,35 +164,38 @@ function OtpLogin() {
         console.log(addRes.data);
         
         if (addRes.status === 201) {
-          toast.error('Employee Email Already Exists!', {
-            autoClose: 2000,
-            hideProgressBar: true,
-            pauseOnHover: false,
-          });
+          alert("Employee Email Already Exists!");
+          // toast.error('Employee Email Already Exists!', {
+          //   autoClose: 2000,
+          //   hideProgressBar: true,
+          //   pauseOnHover: false,
+          // });
         } else if ( addRes.status === 200) {
-          toast.success('Employee Database Has Been Updated!', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-          style: {
-            background: "#4BB543",
-            color: "#fff",
-            borderRadius: "8px",
-            fontWeight: "bold",
-            border: "none",
-            boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-          },
-        });
+          alert("Employee Database Has Been Updated!");
+        //   toast.success('Employee Database Has Been Updated!', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        //   style: {
+        //     background: "#4BB543",
+        //     color: "#fff",
+        //     borderRadius: "8px",
+        //     fontWeight: "bold",
+        //     border: "none",
+        //     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        //   },
+        // });
         }
         
       } catch (error) {
 
         console.log(error);
-        toast.error(error, {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+        alert(error);
+        // toast.error(error, {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        // });
         
       }
     }

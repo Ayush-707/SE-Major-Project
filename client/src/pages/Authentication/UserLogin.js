@@ -49,33 +49,36 @@ function Auth () {
       console.log(loginRes.data);
       
       if (loginRes.status === 201 ) {
-          toast.error('Username does not Exists', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+        alert("Username does not Exists");
+        //   toast.error('Username does not Exists', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        // });
       } else if ( loginRes.status === 202 ) {
 
-          toast.error('Incorrect Password', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+        alert("Incorrect Password");  
+        // toast.error('Incorrect Password', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        // });
       } else if ( loginRes.status === 200 ) {
 
-        toast.success('Login Successful!', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-          style: {
-            background: "#4BB543",
-            color: "#fff",
-            borderRadius: "8px",
-            fontWeight: "bold",
-            border: "none",
-            boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-          },
-        });
+        alert("Login Successful!");
+        // toast.success('Login Successful!', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false,
+        //   style: {
+        //     background: "#4BB543",
+        //     color: "#fff",
+        //     borderRadius: "8px",
+        //     fontWeight: "bold",
+        //     border: "none",
+        //     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        //   },
+        // });
 
         localStorage.setItem('currentUser', JSON.stringify(loginData.userName));
         navigate("/User/Home");
@@ -96,19 +99,21 @@ function Auth () {
     console.log(signupData.passWord);
 
     if ( signupData.passWord.length < 5 ) {
-      toast.error('Password should be at Least 6 Characters Long', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
+      alert("Password should be at Least 6 Characters Long");
+      // toast.error('Password should be at Least 6 Characters Long', {
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   pauseOnHover: false,
+      // });
 
     } else if ( signupData.passWord !== signupData.confirmPass) {
 
-      toast.error('Passwords do not Match!', {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
+      alert("Passwords do not Match!");
+      // toast.error('Passwords do not Match!', {
+      //   autoClose: 2000,
+      //   hideProgressBar: true,
+      //   pauseOnHover: false,
+      // });
         
     } else {
 
@@ -117,45 +122,49 @@ function Auth () {
       
         if (signupRes.status === 201 ) {
           console.log(signupRes.data);
-          toast.error("Username already exists.", {
-            autoClose: 2000,
-            hideProgressBar: true,
-            pauseOnHover: false,
-          });
+          alert("Username already exists.");
+          // toast.error("Username already exists.", {
+          //   autoClose: 2000,
+          //   hideProgressBar: true,
+          //   pauseOnHover: false,
+          // });
 
         } else if(signupRes.status === 202){
           console.log(signupRes.data);
-          toast.error("Email already exists.", {
-            autoClose: 2000,
-            hideProgressBar: true,
-            pauseOnHover: false,
-          });
+          alert("Email already exists.");
+          // toast.error("Email already exists.", {
+          //   autoClose: 2000,
+          //   hideProgressBar: true,
+          //   pauseOnHover: false,
+          // });
         } else {
 
           console.log(signupRes.data);
-          toast.success("Account Creation Successfull.", {
-            autoClose: 2000,
-            hideProgressBar: true,
-            pauseOnHover: false,
-            style: {
-              background: "#4BB543",
-              color: "#fff",
-              borderRadius: "8px",
-              fontWeight: "bold",
-              border: "none",
-              boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-            },
-          });
+          alert("Account Creation Successfull.");
+          // toast.success("Account Creation Successfull.", {
+          //   autoClose: 2000,
+          //   hideProgressBar: true,
+          //   pauseOnHover: false,
+          //   style: {
+          //     background: "#4BB543",
+          //     color: "#fff",
+          //     borderRadius: "8px",
+          //     fontWeight: "bold",
+          //     border: "none",
+          //     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+          //   },
+          // });
         }
 
 
       } catch (error) {
         console.error(error);
-        toast.error( 'Account Creation Failed!', {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false
-        });
+        alert("Account Creation Failed!");
+        // toast.error( 'Account Creation Failed!', {
+        //   autoClose: 2000,
+        //   hideProgressBar: true,
+        //   pauseOnHover: false
+        // });
       }
       
       
