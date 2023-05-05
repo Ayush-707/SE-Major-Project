@@ -162,6 +162,11 @@ function Page4() {
     },
     hover: {
       backgroundColor: '#1D4ED8',
+    },
+    toast:{
+      padding: '10px 20px',
+      width:"200px",
+      position:"absolute"
     }
   };
   
@@ -169,7 +174,7 @@ function Page4() {
 
   return (
   <>
-    <ToastContainer />
+    <ToastContainer style={styles.toast} />
   
         <form style={styles.form} onSubmit={handleSubmit}>
           <label htmlFor="name" style={styles.label}>Name:</label>

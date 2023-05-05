@@ -19,6 +19,7 @@ const Depoe = () => {
       setError("Please enter a valid amount");
       return false;
     }
+    setError("");
     return true;
   };
 
