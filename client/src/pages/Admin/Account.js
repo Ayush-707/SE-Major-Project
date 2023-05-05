@@ -132,14 +132,14 @@ function Account() {
     const headers = ['Account Number', 'Account Holder Name', 'User Name', 'Account Balance'];
   
     requests.forEach(request => {
-      const row = [request.sender, request.receiver, request.senderId, request.receiverId, request.amount, request.date];
+      const row = [request.accountNumber, request.accountHolderName, request.userName, request.balance];
       tableRows.push(row);
     });
   
     // Set font size and center align the heading
     doc.setFontSize(18);
     doc.setTextColor(0, 0, 0); // Set text color to blue
-    doc.text('Account Details of Users', doc.internal.pageSize.width / 2, 80, { align: 'center' });
+   // doc.text('Account Details of Users', doc.internal.pageSize.width / 2, 80, { align: 'center' });
   
     // Create the table and center align it
     doc.autoTable({
@@ -148,7 +148,7 @@ function Account() {
       tableWidth: 'wrap',
       margin: { top: 100 },
       theme: 'striped', // Apply striped theme to the table
-      columnWidth: [120, '*', '*', '*', '*', '*'], // Set the width of the first column to 120
+      columnWidth: [160, '*', '*', '*', '*', '*'], // Set the width of the first column to 120
     });
     
     // Save the PDF file

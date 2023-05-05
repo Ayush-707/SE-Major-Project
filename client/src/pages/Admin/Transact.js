@@ -127,10 +127,10 @@ function Transact() {
   const generatePdf = () => {
     const doc = new jsPDF('p', 'pt', 'letter');
     const tableRows = [];
-    const headers = ['Sender', 'Reciever', 'Sender Id', 'Reciever Id', 'Amount', 'Date'];
+    const headers = ['Sender', 'Reciever', 'Sender Acc. No.', 'Reciever Acc. No.', 'Amount', 'Date'];
   
     requests.forEach(request => {
-      const row = [request.sender, request.receiver, request.senderId, request.receiverId, request.amount, request.date];
+      const row = [request.sender, request.receiver, request.senderaccnum, request.receiveraccnum, request.amount, request.date];
       tableRows.push(row);
     });
   
@@ -185,8 +185,8 @@ function Transact() {
           <TableRow>
             <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Sender</TableCell>
             <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Reciever</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Sender Id</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Reciever Id</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Sender Acc. No.</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Reciever Acc. No.</TableCell>
             <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Amount</TableCell>
             <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Date</TableCell>
             
@@ -202,8 +202,8 @@ function Transact() {
             <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-100" : ""}>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.sender}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.receiver}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.senderId}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.receiverId}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.senderaccnum}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.receiveraccnum}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.amount}</TableCell>
               <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.date}</TableCell>
               
