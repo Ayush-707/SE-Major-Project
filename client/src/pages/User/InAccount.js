@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {InvestAccount} from '../../Services/APIs/UserAPI';
 import {ToastContainer, toast } from 'react-toastify';
 
@@ -17,6 +18,7 @@ function Funding() {
     pin:'',
     state:'',
   });
+  const navigate = useNavigate();
 
   // const [isLoading, setIsLoading] = useState(false);
 
@@ -83,10 +85,12 @@ function Funding() {
       });
     }
     else {
-
+      setTimeout(() => {
+        navigate("/User/Home")
+      }, 2000)
       
       toast.success("Investment Account Created Successfully", {
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: true,
         pauseOnHover: false,
         style: {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {RequestNewAccount} from '../../Services/APIs/UserAPI';
 import {ToastContainer, toast } from 'react-toastify';
 
@@ -19,6 +20,7 @@ function Page4() {
   });
 
   // const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -77,9 +79,13 @@ function Page4() {
     }
     else {
 
+      setTimeout(() => {
+        navigate("/User/Home")
+      }, 2000)
+      
       
       toast.success("New Account Requested Has Been Submitted", {
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: true,
         pauseOnHover: false,
         style: {
