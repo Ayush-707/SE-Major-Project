@@ -12,7 +12,7 @@ const Withdraw = () => {
 
   const validateInputs = () => {
     if (!id || !amount) {
-      setError("Please fill out all fields321");
+      setError("Please fill out all fields");
       return false;
     }
     if (isNaN(amount) || amount <= 0) {
