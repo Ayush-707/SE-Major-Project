@@ -1,45 +1,24 @@
-import React from 'react'
-import Table, { AvatarCell, SelectColumnFilter, StatusPill } from '../../tables/Table'
+import React, { useState, useEffect } from "react";
+import { TransactRec } from "../../Services/APIs/UserAPI";
 
-const getData = () => {
-  const data = [
-    
-   
-  ]
-  return [...data, ...data, ...data]
-}
+const TransactionRecords = () => {
+  const [transactions, setTransactions] = useState([]);
 
-function Display() {
-  const columns = React.useMemo(() => [
-    {
-      Header: "User Id",
-      accessor: 'name',
-      Cell: AvatarCell,
-      imgAccessor: "imgUrl",
-      emailAccessor: "email",
-    },
-    {
-      Header: "Reciever Id",
-      accessor: 'status',
-      Cell: StatusPill,
-     
-    },
-    {
-      Header: "Transaction Amount",
-      accessor: 'amount',
-      Cell: StatusPill,
-     
-    },
+  const username = JSON.parse(localStorage.getItem('currentUser'));
 
-    {
-      Header: "Transaction Date",
-      accessor: 'age',
-    },
-    
-    
-  ], [])
-
-  const data = React.useMemo(() => getData(), [])
+  useEffect(() => {
+    // Make API call to get transaction records
+    TransactRec({ user: username })
+      .then((response) => {
+        //console.log(response);
+        setTransactions(response.data);
+      })
+      .catch((error) => { 
+        console.error(error);
+      });
+  }, []);
+  console.log('arrray')
+  //console.log(transactions.data);
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
@@ -48,11 +27,46 @@ function Display() {
           <h1 className="text-xl font-semibold">Transaction History</h1>
         </div>
         <div className="mt-6">
-          <Table columns={columns} data={data} />
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Sender
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Receiver
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Amount
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {Array.isArray(transactions) && transactions.map((transaction, index) => (
+                <tr key={index}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {transaction.sender}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {transaction.receiver}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {transaction.amount}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {transaction.date}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </main>
     </div>
   );
-}
+};
 
-export default Display;
+export default TransactionRecords;

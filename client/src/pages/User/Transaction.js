@@ -44,7 +44,7 @@ const Transaction = () => {
       alert('Transaction completed successfully!');
       // redirect to transaction history page
       setTimeout(() => {
-        navigate("/User/display")
+        navigate("/Admin/Transact")
       }, 1000) 
     } catch (error) {
       setError(error.message);
