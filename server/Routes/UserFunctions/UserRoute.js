@@ -18,6 +18,7 @@ router.post("/User/New-Account", newAccountRequest.userNewAccountRequest);
 router.post('/User/InAccount', inAccount.investAccount );
 router.post('/User/Home', accountInfo.getAccountInfo);
 router.post('/User/Transaction', transactController.createTransaction);
+router.post('/User/TransactRec', transactRec.getTransactionRecords);
 
 
 module.exports = router;
