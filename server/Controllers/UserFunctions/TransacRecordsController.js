@@ -6,33 +6,27 @@ exports.getTransactionRecords = async (req, res) => {
     const { user } = req.body;
 
     // Find the bank account for the user to get their ID
-    const bankAccount = await BankAccount.findOne({ user });
-    //console.log('Bank Account:', bankAccount);
-    const userId = bankAccount._id;
+    const bankAccount = await BankAccount.findOne({ userName:user });
+    if (!bankAccount) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    const userId = bankAccount.accountNumber;
 
     // Find all transaction records where the user is either the sender or receiver
     const transactionRecords = await TransactionRecord.find({
-      $or: [{ senderId: userId }, { receiverId: userId }],
+      $or: [{ senderaccnum: userId }, { receiveraccnum: userId }],
     }).sort({ date: -1 });
-    //console.log('Transaction Records:', transactionRecords);
 
     // Map the transaction records to include the sender and receiver usernames
     const transactions = await Promise.all(
       transactionRecords.map(async (record) => {
-        //console.log('Transaction Record:', record);
-        const sender = await BankAccount.findById(record.senderId).select(
-            'userName _id'
-        );
-        const receiver = await BankAccount.findById(record.receiverId).select(
-            'userName _id'
-        );
-        //console.log('Sender:', sender);
-        //console.log('Receiver:', receiver);
+        const sender = await BankAccount.findOne({ accountNumber: record.senderaccnum }).select('userName _id');
+        const receiver = await BankAccount.findOne({ accountNumber: record.receiveraccnum }).select('userName _id');
         return {
-          sender: sender.userName,
-          receiver: receiver.userName,
+          sender: sender ? sender.userName : 'Unknown',
+          receiver: receiver ? receiver.userName : 'Unknown',
           amount: record.amount,
-          date: record.date,
+          date: record.date.toLocaleString(),
         };
       })
     );
