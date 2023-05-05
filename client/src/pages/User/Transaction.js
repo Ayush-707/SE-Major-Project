@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {Transact} from '../../Services/APIs/UserAPI';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Transaction = () => {
   const [id, setId] = useState("");
@@ -45,7 +47,20 @@ const Transaction = () => {
       // redirect to transaction history page
       setTimeout(() => {
         navigate("/Admin/Transact")
-      }, 1000) 
+      }, 2000) 
+      toast.success("Transaction successful", {
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+        style: {
+          background: "#4BB543",
+          color: "#fff",
+          borderRadius: "8px",
+          fontWeight: "bold",
+          border: "none",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+        },
+      });
     } catch (error) {
       setError(error.message);
     }
@@ -71,6 +86,7 @@ const Transaction = () => {
 
   return (
     <>
+    <ToastContainer/>
     <section style={ styles }>
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Transact Money</h1>
