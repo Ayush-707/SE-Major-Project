@@ -4,7 +4,7 @@
   "description": "* User Authentication: The system should have a secure authentication mechanism that allows users to log in and access their accounts. This can be achieved using JWT tokens or other secure authentication methods.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
