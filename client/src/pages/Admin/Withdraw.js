@@ -1,204 +1,331 @@
 import React, { useState } from "react";
-import axios from 'axios';
-import {WithdrawCall} from '../../Services/APIs/AdminAPI';
-import {ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { useNavigate } from 'react-router-dom';
+import {Withd} from '../../Services/APIs/AdminAPI';
 
 const Withdraw = () => {
-  const [accountNumber, setaccountNumber] = useState("");
+  const [id, setId] = useState("");
   const currentDate = new Date().toLocaleDateString();
-  const [balance, setBalance] = useState(null);
   const [amount, setAmount] = useState("");
+  const [error, setError] = useState(null);
+  const [confirming, setConfirming] = useState(false);
+  const navigate = useNavigate();
+
+  const validateInputs = () => {
+    if (!id || !amount) {
+      setError("Please fill out all fields");
+      return false;
+    }
+    if (isNaN(amount) || amount <= 0) {
+      setError("Please enter a valid amount");
+      return false;
+    }
+    setError("");
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // perform withdraw logic here
+    if (!validateInputs()) {
+      return;
+    }
+    setConfirming(true);
   };
 
-  async function updateBalance(accountNumber, newBalance) {
+  
+  const handleConfirm = async () => {
     try {
-      const response = await axios.patch(`http://localhost:4002/Admin/Balance/${accountNumber}`, { amount: newBalance });
-      const updatedBalance = response.data.balance;
-      console.log(`Balance updated to ${updatedBalance}`);
-      return updatedBalance;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  const handleCheckBalance = async (e) => {
-    
-
-    e.preventDefault();
-    try {
-      if(String({accountNumber}["accountNumber"])==''){
-        
-        toast.error("Enter the Withdrawer's Account Number", {
-          autoClose: 2000,
-          hideProgressBar: true,
-          pauseOnHover: false,
-        });
+      const withdrawData = {
+        id,
+        amount
       }
-      else{
-        setBalance(400);// This line to be deleted
-      const response = await axios.get(`http://localhost:4002/Admin/Balance/${accountNumber}`);
 
-      //const response = await axios.get(`/Admin/Balance/${accountNumber}`);
-      console.log("response");
-      alert(response);
-      console.log("response");
-      setBalance(response.balance);
-    }
-      
-    } catch (err) {
-      console.error(err);
-      // handle error, e.g. show an error message to the user
+      const response = await Withd(withdrawData);
+      // show success message to user
+      alert('Withdraw completed successfully!');
+      // redirect to transaction history page
+      setTimeout(() => {
+        navigate("/Admin/Home")
+      }, 1000) 
+    } catch (error) {
+      setError(error.message);
     }
   };
+  
 
-  const doWithdraw = async (e) =>{
-    if(balance==null){
-      
-      toast.error("check balance first", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
-    }
-    else if(String({amount}["amount"])==''){
-      
-      toast.error("Enter the amount to be withdrawn", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
-    }
-    else if(parseInt({amount}["amount"])>parseInt(balance)){
-      
-      toast.error("Amount to be withdrawn should be less than or equal to Current Balance, which is "+balance, {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
-    }
-    else if(parseInt({amount}["amount"])<0){
-      
-      toast.error("Enter a +ve amount to be withdrawn", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
-    }
-    else{
-      
-    
-    const response = await WithdrawCall({"id":accountNumber,"amount":amount});
-    console.log(response.data);
-    if (response.status === 201 ) {
-      
-      toast.error("Error While Withdrawing the amount", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-      });
-
-    } else {
-      var newBalance=parseInt(balance)-parseInt({amount}["amount"]);
-      updateBalance(accountNumber, newBalance);
-      setBalance(newBalance);
-      
-      toast.success("Amount withdrawn Successfully", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        pauseOnHover: false,
-        style: {
-          background: "#4BB543",
-          color: "#fff",
-          borderRadius: "8px",
-          fontWeight: "bold",
-          border: "none",
-          boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
-        },
-      });
-      
-    }
-
-    }
-    console.log(parseInt({amount}["amount"]));
-    
-    
+  const handleCancel = () => {
+    setId("");
+    setAmount("");
+    setError(null);
+    setConfirming(false);
   };
+
+  const styles = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/b.png)`,
+    height: "100vh",
+    
+    
+  }
+
+
 
   return (
     <>
-    <ToastContainer/>
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+    <section style={ styles }>
+    <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Withdraw Money</h1>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xxxl">
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
-          Withdrawer's Account Number
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="withdrawersAccountNumber"
-            type="text"
-            placeholder="Account Number"
-            value={accountNumber}
-            onChange={(e) => setaccountNumber(e.target.value)}
-          />
+      {confirming ? (
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h2 className="text-xl font-bold mb-4">
+            Confirm Withdraw Details
+          </h2>
+          <p className="mb-4">
+            You are about to Withdraw {amount} units to the account with ID{" "}
+            {id}.
+          </p>
+          <p className="mb-4">
+            Please review the details and click "Confirm" to proceed or "Cancel"
+            to go back.
+          </p>
+          {error && <p className="text-red-500 font-bold mb-4">{error}</p>}
+          <div className="flex items-center justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4"
+              onClick={handleConfirm}
+            >
+              Confirm
+            </button>
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-        <div className="mb-4 flex items-center justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-            onClick={handleCheckBalance}
-          >
-            Check Balance
-          </button>
-        </div>
-        <div className="mb-4">
-        {balance !== null && (
-        <p>
-          Current balance is: {balance}
-        </p>
-      )}
-        </div>
-        
-        <div className="mb-4">
-        
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
-            Date :{currentDate}
-          </label>
+      ) : (
+        <form
+          onSubmit={handleSubmit}
+          className=" bg-gray-100 shadow-md w-2/3 rounded px-8 pt-6 pb-8 mb-4"
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
+              Enter User's Account Number
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="id"
+              type="text"
+              placeholder="Enter User's Account Number"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+          </div>
+         
           
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="amount">
-            Amount
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="amount"
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </div>
-        <div className="flex items-center justify-center">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-            onClick={doWithdraw}
-          >
-            Withdraw
-          </button>
-        </div>
-      </form>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
+            Date : <span className="font-normal">{currentDate}</span>
+            </label>
+
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="amount"
+            >
+              Amount
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="amount"
+              type="number"
+              placeholder="Enter Amount to be Withdraw"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <p className="text-red-500 font-bold">{error}</p>
+          </div>
+          <div className="flex items-center justify-center">
+            <button
+              className="bg-blue-500 w-96 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              className=" bg-gray-500 w-96 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
     </div>
+    </section>
     </>
   );
 };
 
 export default Withdraw;
+
+/*import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import {Withd} from '../../Services/APIs/AdminAPI';
+
+const Withdraw = () => {
+  const [accountNumber, setId] = useState("");
+  const currentDate = new Date().toLocaleDateString();
+  const [amount, setAmount] = useState("");
+  const [error, setError] = useState(null);
+  const [confirming, setConfirming] = useState(false);
+  const navigate = useNavigate();
+
+  const validateInputs = () => {
+    if (!accountNumber || !amount) {
+      setError("Please fill out all fields");
+      return false;
+    }
+    if (isNaN(amount) || amount <= 0) {
+      setError("Please enter a valid amount");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateInputs()) {
+      return;
+    }
+    setConfirming(true);
+  };
+
+  
+  const handleConfirm = async () => {
+    try {
+      const depositData = {
+        accountNumber,
+        amount
+      }
+        const response = await Withd(depositData);
+      // show success message to user
+      alert('Withdrawn successfully!');
+      // redirect to   Home page
+      setTimeout(() => {
+        navigate("/Admin/Home")
+      }, 1000) 
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  
+
+  const handleCancel = () => {
+    setId("");
+    setAmount("");
+    setError(null);
+    setConfirming(false);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <h1 className="text-2xl font-bold mb-4">Withdraw Money</h1>
+      {confirming ? (
+        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <h2 className="text-xl font-bold mb-4">
+            Confirm Withdraw Details
+          </h2>
+          <p className="mb-4">
+            You are about to withdraw {amount} units to the account of this ID{" "}
+            {accountNumber}.
+          </p>
+          <p className="mb-4">
+            Please review the details and click "Confirm" to proceed or "Cancel"
+            to go back.
+          </p>
+          {error && <p className="text-red-500 font-bold mb-4">{error}</p>}
+          <div className="flex items-center justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4"
+              onClick={handleConfirm}
+            >
+              Confirm
+            </button>
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      ) : (
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        >
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="id">
+              User's Account Number
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="id"
+              type="text"
+              placeholder=" Enter User's Acc. No."
+              value={accountNumber}
+              onChange={(e) => setId(e.target.value)}
+            />
+          </div>
+          
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="date">
+            Date :{currentDate}
+            </label>
+
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="amount"
+            >
+              Amount
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="amount"
+              type="number"
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <p className="text-red-500 font-bold">{error}</p>
+          </div>
+          <div className="flex items-center justify-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default Withdraw;
+
+*/
