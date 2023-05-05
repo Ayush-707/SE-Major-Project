@@ -5,6 +5,7 @@ const newAccountRequest = require( "../../Controllers/UserFunctions/RqstAcntCntr
 const inAccount = require("../../Controllers/UserFunctions/InController");
 const accountInfo = require("../../Controllers/UserFunctions/AccountInfoController");
 const transactController = require("../../Controllers/UserFunctions/TransactionController");
+const transactRec = require("../../Controllers/UserFunctions/TransacRecordsController");
 const bodyParser = require('body-parser');
 const path = require('path');
 
