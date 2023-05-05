@@ -22,6 +22,13 @@ export const SidebarData = [
         cName: 'nav-text'
     },
 
+    {
+        title: "Transaction History",
+        path: '/User/display',
+        icon: <FaIcons.FaArrowUp/>,
+        cName: 'nav-text'
+    },
+
 
     {
         title: "Open Account",

@@ -61,7 +61,7 @@ function Navbar() {
               text = 'History';
                 break;
         case '/Admin/History':
-            text = 'History';
+            text = 'Transaction History';
               break;
         case '/Admin/InvestDetail':
             text = 'Investment Accounts';
@@ -72,7 +72,18 @@ function Navbar() {
             case '/Admin/Transact':
               text = 'Transactions';
                 break;
-        
+                case '/User/display':
+                  text = 'Transaction History';
+                    break;
+                    case '/User/Home':
+                  text = 'User Profile';
+                    break;
+                    case '/Admin/Home':
+                      text = 'Employee Profile';
+                        break;
+                        case '/Admin/Account':
+                      text = 'Account Details of all the Users';
+                        break;
         default:
           text = 'Bank Management App';
       }
