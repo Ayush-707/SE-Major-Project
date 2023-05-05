@@ -63,3 +63,22 @@ export const createAcc = async(data) => {
     return await commonrequest("POST",url,data);
 }
 
+
+export const DataA = async() => {
+    
+    const url = `${BACKEND_URL}/Admin/DetaA`;
+    return await commonrequest("GET", url);
+}
+
+export const DataB= async(data) => {
+    
+    const url = `${BACKEND_URL}/Admin/DetaB`;
+    return await commonrequest("PATCH", url, data);
+}
+
+export const DataC = async(data) => {
+
+    const url = `${BACKEND_URL}/Admin/DetaC`;
+    return await commonrequest("POST",url,data);
+}
+

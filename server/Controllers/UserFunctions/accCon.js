@@ -1,10 +1,10 @@
 
-const InvestAccount = require("../../Database/Models/InModel");
+const Account = require("../../Database/Models/TransactRecords");
 
 
-exports.sendTable = async (req, res) => {
+exports.sendAcc = async (req, res) => {
   try {
-    const tableData = await InvestAccount.find();
+    const tableData = await Account.find();
     //console.log(tableData);
     res.status(200).json(tableData);
   } catch (error) {
@@ -13,7 +13,7 @@ exports.sendTable = async (req, res) => {
   }
 };
 
-exports.accountForms = async (req, res) => {
+exports.SendAcca = async (req, res) => {
 
   try {
     
@@ -39,7 +39,7 @@ exports.accountForms = async (req, res) => {
   }
 };
 
-exports.createInvest = async (req, res) => {
+exports.SendAccb = async (req, res) => {
     try {
       const { ID,Action } = req.body;
       console.log(ID);

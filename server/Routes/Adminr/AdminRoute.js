@@ -8,6 +8,7 @@ const accountInfo = require("../../Controllers/Adminc/AccountInfoController");
 const balanceCheck = require("../../Controllers/AdminAndUser/BallanceController");
 const addNew = require("../../Controllers/Adminc/AddEmployee");
 const dep = require("../../Controllers/Adminc/dController");
+const data = require("../../Controllers/Adminc/detail");
 
 const router = express.Router();
 
@@ -35,10 +36,19 @@ router.patch("/Admin/InvestF", invest.accountForms);
 
 router.post("/Admin/CreateA", invest.createInvest);
 
+//for details of account
 
+router.get("/Admin/DetaA", data.sendA);
+
+router.patch("/Admin/DetaB", data.sendB);
+
+router.post("/Admin/DetaC", data.sendC);
 
 router.post("/Admin/Add", addNew.adminAdd)
 router.post("/Admin/Deposit", dep.deposit)
+
+
+
 
 
 

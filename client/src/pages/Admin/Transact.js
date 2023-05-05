@@ -1,7 +1,12 @@
 
 
+
+
+
+
+
 import React, { useEffect, useState,  } from "react";
-import {GetInvest, InvForm, createAcc} from "../../Services/APIs/AdminAPI";
+import {accA, accB, accC} from "../../Services/APIs/UserAPI";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,14 +25,14 @@ import 'jspdf-autotable';
 
 
 
-function InvestDetail() {
+function Transact() {
   
 
   const [requests, setRequests] = useState([]);
  
   useEffect(() => {
     const fetchRequests = async () => {
-      const response = await GetInvest();
+      const response = await accA();
       setRequests(response.data);  
     };
     fetchRequests();
@@ -39,7 +44,7 @@ function InvestDetail() {
       ID: id,
       Action: true
     }
-    const res = await InvForm(obj1);
+    const res = await accB(obj1);
     
     if (res.status === 200) {
       const updatedRequests = requests.map(req => {
@@ -58,7 +63,7 @@ function InvestDetail() {
             },
           });
 
-          createInvest(obj1);
+          SendAccb(obj1);
 
           
           return { ...req, status: "Approved" }
@@ -69,9 +74,9 @@ function InvestDetail() {
       setRequests(updatedRequests);
     }
   }
-  const createInvest = async (obj) => {
+  const SendAccb = async (obj) => {
     
-    const serverRes = await createAcc(obj);
+    const serverRes = await accC(obj);
     console.log(serverRes.data);
 
     if (serverRes.status === 201) {
@@ -99,7 +104,7 @@ function InvestDetail() {
       ID: id,
       Action: false
     }
-    const res = await InvForm(obj2);
+    const res = await accB(obj2);
     
     if (res.status === 200) {
       const updatedRequests = requests.map(req => {
@@ -122,17 +127,17 @@ function InvestDetail() {
   const generatePdf = () => {
     const doc = new jsPDF('p', 'pt', 'letter');
     const tableRows = [];
-    const headers = ['Name', 'Phone', 'Email', 'Address', 'Type', 'Amount'];
+    const headers = ['Sender', 'Reciever', 'Sender Id', 'Reciever Id', 'Amount', 'Date'];
   
     requests.forEach(request => {
-      const row = [request.name, request.phone, request.email, request.address, request.type, request.amount];
+      const row = [request.sender, request.receiver, request.senderId, request.receiverId, request.amount, request.date];
       tableRows.push(row);
     });
   
     // Set font size and center align the heading
     doc.setFontSize(18);
     doc.setTextColor(0, 0, 0); // Set text color to blue
-    doc.text('Investment Accounts', doc.internal.pageSize.width / 2, 80, { align: 'center' });
+    doc.text('Transaction History of Users', doc.internal.pageSize.width / 2, 80, { align: 'center' });
   
     // Create the table and center align it
     doc.autoTable({
@@ -145,28 +150,9 @@ function InvestDetail() {
     });
     
     // Save the PDF file
-    doc.save('investments.pdf');
+    doc.save('Transactions.pdf');
   }
   
-  
-  
-  /*
-  const generatePdf = () => {
-    const doc = new jsPDF();
-    const tableRows = [];
-    const headers = ['Name', 'Phone', 'Email', 'Address', 'Type', 'Amount'];
-    requests.forEach(request => {
-      const row = [request.name, request.phone, request.email, request.address, request.type, request.amount];
-      tableRows.push(row);
-    });
-    doc.autoTable({
-      head: [headers],
-      body: tableRows,
-      tableWidth: 'wrap',
-    });
-    doc.save('investments.pdf');
-  }
-  */
   
 
   return (
@@ -179,7 +165,7 @@ function InvestDetail() {
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 
   <div style={{ marginTop: '20px' }}>
-    <Button variant="contained" color="primary" onClick={() => generatePdf()}>Generate PDF</Button>
+    <Button variant="contained" color="primary" onClick={() => generatePdf()}>Download PDF</Button>
   </div>
 </div>
 <br></br>
@@ -197,13 +183,15 @@ function InvestDetail() {
       <Table aria-label="simple table" sx={{ textAlign: 'center' }}>
       <TableHead sx={{ borderBottom: '2px solid white', borderTop: '1px solid', backgroundColor: 'yellow' }}>
           <TableRow>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>NAME</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>PHONE</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>EMAIL</TableCell>
-            <TableCell sx={{ color: 'blacke', fontFamily: 'Georgia', fontSize: '18px', width: '20%', textAlign: 'center' }}>ADDRESS</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Sender</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Reciever</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Sender Id</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Reciever Id</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Amount</TableCell>
+            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', width: '10%', textAlign: 'center' }}>Date</TableCell>
+            
            
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>TYPE</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>Amount</TableCell>
+
            
 
           </TableRow>
@@ -212,16 +200,14 @@ function InvestDetail() {
         <TableBody>
           {requests.map((request, index) => (
             <TableRow key={request._id} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.name}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.phone}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.email}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.address}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.sender}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.receiver}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.senderId}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.receiverId}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.amount}</TableCell>
+              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.date}</TableCell>
               
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.accountType}</TableCell>
-              <TableCell sx = {{textAlign: 'center', fontFamily: 'Arial', fontSize: '15px'}}>{request.amount}
-            
-          
-          </TableCell>
+        
         </TableRow>
       ))}
     </TableBody>
@@ -234,23 +220,4 @@ function InvestDetail() {
 )
 }
 
-export default InvestDetail;
-
-
-
-
-
-/**
-  <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>STATUS</TableCell>
-            <TableCell sx={{ color: 'black', fontFamily: 'Georgia', fontSize: '18px', textAlign: 'center' }}>ACTION</TableCell>
-<TableCell sx = {{textAlign: 'center', fontFamily: 'Arial'}}>{request.status}</TableCell>
-              {request.status === 'Pending' ? 
-              <>
-                <Button variant="contained" color="primary" onClick={() => handleApprove(request._id)}>Approve</Button>
-                <Button variant="contained" color="secondary" sx={{ marginLeft: '5px' }} onClick={() => handleReject(request._id)}>Reject</Button>
-              </>
-              :
-              <Button variant="contained" disabled>{request.status}</Button>
-            }
- */
-           
+export default Transact;

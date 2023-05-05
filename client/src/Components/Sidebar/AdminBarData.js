@@ -17,18 +17,10 @@ export const AdminOptions = [
     {
         title: "Deposit Money",
         path: '/Admin/Depoe',
-        icon: <i class="fa-solid fa-circle-pause"></i>,
+        icon: <i class="fa-solid fa-circle-dollar-to-slot"></i>,
         cName: 'nav-text'
     },
     
-
-    {
-        title: "Deposit History",
-        path: '/Admin/History',
-        icon: <FaIcons.FaArrowUp/>,
-        cName: 'nav-text'
-    },
-
     {
         title: "Withdraw Money",
         path: '/Admin/Withdraw',
@@ -37,11 +29,19 @@ export const AdminOptions = [
     },
 
     {
-        title: "Withdraw History",
-        path: '/Admin/wHistory',
-        icon: <FaIcons.FaArrowDown/>,
+        title: "Account Details",
+        path: '/Admin/Account',
+        icon: <FaIcons.FaArrowUp/>,
         cName: 'nav-text'
     },
+
+    {
+        title: "Transaction History",
+        path: '/Admin/Transact',
+        icon: <FaIcons.FaArrowUp/>,
+        cName: 'nav-text'
+    },
+
 
     {
         title: "Account Requests",
