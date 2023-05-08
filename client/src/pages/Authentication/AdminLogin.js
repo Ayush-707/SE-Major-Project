@@ -42,7 +42,7 @@ function OtpLogin() {
     const response = await  adminLogin(loginData)
     if (response.status === 201) {
       //setIsLoading(true);
-      alert("Email Does Not Exists!")
+      toast.error("Email Does Not Exists!")
       // toast.error('Email Does Not Exists!', {
       //   autoClose: 2000,
       //   hideProgressBar: true,
@@ -58,7 +58,7 @@ function OtpLogin() {
 
      
 
-      alert("OTP sent! Please Check your Email");
+      toast.success("OTP sent! Please Check your Email");
       // toast.success('OTP sent! Please Check your Email', {
       //   autoClose: 2000,
       //   hideProgressBar: true,
@@ -105,14 +105,14 @@ function OtpLogin() {
       const status = response_2.status
   
       if (status ===201) {
-        alert("Invalid OTP!");
+        toast.error("Invalid OTP!");
         // toast.error('Invalid OTP!', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
         //   pauseOnHover: false,
         // });
       } else if (status ===200) {
-        alert("Login Successful!");
+        toast.success("Login Successful!");
         // toast.success('Login Successful!', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -131,7 +131,7 @@ function OtpLogin() {
 
 
       } else {
-        alert("Error Encountered");
+        toast.error("Error Encountered");
         // toast.error('Error Encountered', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -151,7 +151,7 @@ function OtpLogin() {
     e.preventDefault();
 
     if (addData.password !== masterPassword) {
-      alert("Incorrect Master Password!");
+      toast.error("Incorrect Master Password!");
       // toast.error('Incorrect Master Password!', {
       //   autoClose: 2000,
       //   hideProgressBar: true,
@@ -164,14 +164,14 @@ function OtpLogin() {
         console.log(addRes.data);
         
         if (addRes.status === 201) {
-          alert("Employee Email Already Exists!");
+         toast.error("Employee Email Already Exists!");
           // toast.error('Employee Email Already Exists!', {
           //   autoClose: 2000,
           //   hideProgressBar: true,
           //   pauseOnHover: false,
           // });
         } else if ( addRes.status === 200) {
-          alert("Employee Database Has Been Updated!");
+          toast.success("Employee Database Has Been Updated!");
         //   toast.success('Employee Database Has Been Updated!', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -210,7 +210,8 @@ function OtpLogin() {
 
   return (
     <>
-        <Toaster/>
+        <Toaster position="top-right"
+  reverseOrder={false}/>
         <div className="flex flex-row w-full">
         <div className="w-1/2 pr-6">
           <div className="w-full">
