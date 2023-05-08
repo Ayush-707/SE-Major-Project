@@ -162,7 +162,8 @@ function Account() {
   <>
 
       
-  <Toaster />
+  <Toaster position="top-right"
+  reverseOrder={false}/>
 
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 
