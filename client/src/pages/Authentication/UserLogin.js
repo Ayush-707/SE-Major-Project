@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Login,Signup } from '../../Services/APIs/AuthAPI';
 import { useNavigate } from 'react-router-dom';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Auth () {
 
@@ -178,7 +178,7 @@ function Auth () {
         
   <div>
   
-<ToastContainer />
+<Toaster />
 
 <div style = {styles} >
     <div class="flex justify-center">
