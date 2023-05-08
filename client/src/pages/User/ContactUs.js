@@ -71,7 +71,8 @@ const ContactForm = () => {
 
   return (
   <>  
-    <Toaster/>
+    <Toaster position="top-right"
+  reverseOrder={false}/>
       <div className="flex flex-row w-full">
         <div className="w-1/2 pr-6">
           <div className="w-full">
