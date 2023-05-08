@@ -186,7 +186,8 @@ function Page4() {
   return (
   <>
  
-    <Toaster style = {styles.toast} />
+    <Toaster style = {styles.toast} position="top-right"
+  reverseOrder={false}/>
     <div style = {styles2}>
       <div>
   
