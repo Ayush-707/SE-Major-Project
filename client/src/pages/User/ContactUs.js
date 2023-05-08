@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {CustCare} from '../../Services/APIs/UserAPI';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ContactForm = () => {
 
@@ -71,7 +71,7 @@ const ContactForm = () => {
 
   return (
   <>  
-    <ToastContainer/>
+    <Toaster/>
       <div className="flex flex-row w-full">
         <div className="w-1/2 pr-6">
           <div className="w-full">
