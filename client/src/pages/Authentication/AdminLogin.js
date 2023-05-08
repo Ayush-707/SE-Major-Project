@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addEmployee,  } from "../../Services/APIs/AdminAPI";
 import { adminLogin,updateOTP, checkOTP } from "../../Services/APIs/AuthAPI";
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 function OtpLogin() {
@@ -210,7 +210,7 @@ function OtpLogin() {
 
   return (
     <>
-        <ToastContainer/>
+        <Toaster/>
         <div className="flex flex-row w-full">
         <div className="w-1/2 pr-6">
           <div className="w-full">
