@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {Withd} from '../../Services/APIs/AdminAPI';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Withdraw = () => {
@@ -85,7 +85,7 @@ const Withdraw = () => {
 
   return (
     <>
-    <ToastContainer/>
+    <Toaster/>
     <section style={ styles }>
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-2xl font-bold mb-4">Withdraw Money</h1>
