@@ -8,7 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -125,7 +125,7 @@ function PendingReq() {
                  <>
 
       
-                    <ToastContainer />
+                    <Toaster />
                                     <TableContainer 
                                     component={Paper} 
                                     sx={{ 
