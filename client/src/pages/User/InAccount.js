@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {InvestAccount} from '../../Services/APIs/UserAPI';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Funding() {
 
@@ -178,7 +178,7 @@ function Funding() {
 
   return (
   <>
-    <ToastContainer />
+    <Toaster />
   
         <form style={styles.form} onSubmit={handleSubmit}>
         <h1 className="text-2xl font-semibold mb-6">Open Investment Account</h1>
