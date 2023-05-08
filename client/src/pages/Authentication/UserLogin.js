@@ -49,7 +49,7 @@ function Auth () {
       console.log(loginRes.data);
       
       if (loginRes.status === 201 ) {
-        alert("Username does not Exists");
+        toast.error("Username does not Exists");
         //   toast.error('Username does not Exists', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -57,7 +57,7 @@ function Auth () {
         // });
       } else if ( loginRes.status === 202 ) {
 
-        alert("Incorrect Password");  
+        toast.error("Incorrect Password");  
         // toast.error('Incorrect Password', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -65,7 +65,7 @@ function Auth () {
         // });
       } else if ( loginRes.status === 200 ) {
 
-        alert("Login Successful!");
+        toast.success("Login Successful!");
         // toast.success('Login Successful!', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -99,7 +99,7 @@ function Auth () {
     console.log(signupData.passWord);
 
     if ( signupData.passWord.length < 5 ) {
-      alert("Password should be at Least 6 Characters Long");
+      toast.error("Password should be at Least 6 Characters Long");
       // toast.error('Password should be at Least 6 Characters Long', {
       //   autoClose: 2000,
       //   hideProgressBar: true,
@@ -108,7 +108,7 @@ function Auth () {
 
     } else if ( signupData.passWord !== signupData.confirmPass) {
 
-      alert("Passwords do not Match!");
+      toast.error("Passwords do not Match!");
       // toast.error('Passwords do not Match!', {
       //   autoClose: 2000,
       //   hideProgressBar: true,
@@ -122,7 +122,7 @@ function Auth () {
       
         if (signupRes.status === 201 ) {
           console.log(signupRes.data);
-          alert("Username already exists.");
+          toast.error("Username already exists.");
           // toast.error("Username already exists.", {
           //   autoClose: 2000,
           //   hideProgressBar: true,
@@ -131,7 +131,7 @@ function Auth () {
 
         } else if(signupRes.status === 202){
           console.log(signupRes.data);
-          alert("Email already exists.");
+          toast.error("Email already exists.");
           // toast.error("Email already exists.", {
           //   autoClose: 2000,
           //   hideProgressBar: true,
@@ -140,7 +140,7 @@ function Auth () {
         } else {
 
           console.log(signupRes.data);
-          alert("Account Creation Successfull.");
+          toast.success("Account Creation Successfull.");
           // toast.success("Account Creation Successfull.", {
           //   autoClose: 2000,
           //   hideProgressBar: true,
@@ -159,7 +159,7 @@ function Auth () {
 
       } catch (error) {
         console.error(error);
-        alert("Account Creation Failed!");
+        toast.error("Account Creation Failed!");
         // toast.error( 'Account Creation Failed!', {
         //   autoClose: 2000,
         //   hideProgressBar: true,
@@ -178,7 +178,8 @@ function Auth () {
         
   <div>
   
-<Toaster />
+<Toaster position="top-right"
+  reverseOrder={false}/>
 
 <div style = {styles} >
     <div class="flex justify-center">
