@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {RequestNewAccount} from '../../Services/APIs/UserAPI';
-import {ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Page4() {
 
@@ -186,7 +186,7 @@ function Page4() {
   return (
   <>
  
-    <ToastContainer style = {styles.toast} />
+    <Toaster style = {styles.toast} />
     <div style = {styles2}>
       <div>
   
