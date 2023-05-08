@@ -178,7 +178,8 @@ function Funding() {
 
   return (
   <>
-    <Toaster />
+    <Toaster position="top-right"
+  reverseOrder={false}/>
   
         <form style={styles.form} onSubmit={handleSubmit}>
         <h1 className="text-2xl font-semibold mb-6">Open Investment Account</h1>
